@@ -1,0 +1,39 @@
+# copy (cpr) or move (mvr) with progress bars using rsync
+alias cpr='rsync -aP --no-whole-file --inplace'
+alias mvr='rsync -aP --no-whole-file --inplace --remove-source-files'
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  alias lsregister=/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
+fi
+
+# Clean up LaunchServices to remove duplicates in the “Open With” menu
+# alias
+lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+
+# enable dmesg with human readable timestamp on linux systems
+if [[ "$OSTYPE" = linux-gnu ]]; then
+  alias dmesg="dmesg -T"
+fi
+#alias dds='dcfldd statusinterval=25 status=on bs=4M conv=notrunc'
+
+alias qtconsole='ipython qtconsole --colors=linux'
+alias df='df -h'
+
+# Quickly access directories
+alias Projects='cd ~/Projects'
+alias Git='cd ~/Git'
+alias Envs='cd ~/Envs'
+alias Downloads='cd ~/Downloads'
+alias Desktop='cd ~/Desktop'
+
+# Pushd and popd more accessible with +/-/?
+alias +='pushd'
+alias -- -='popd'
+alias ?='dirs -v'
+
+# use ping $SN.25 to ping localsubnet ip .25 such as 192.168.10.25
+# or ssh $SN.100 to ssh to localsubnhet ip 192.168.10.100
+export SN=`netstat -nr| grep -m 1 -iE 'default|0.0.0.0' | awk '{print $2}' | sed 's/\.[0-9]*$//'`
+
+alias tmux='tmux -CC'
+alias pv="pv -tpreb"

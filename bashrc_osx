@@ -1,0 +1,37 @@
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20
+
+# Setting PATH for Python 2.7
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+PATH="/usr/local/sbin:${PATH}"
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+
+# Deleted files with go to Trash instead of being deleted immediately.
+function rm () {
+  local path
+  for path in "$@"; do
+    # ignore any arguments
+    if [[ "$path" = -* ]]; then :
+    else
+      local dst=${path##*/}
+      # append the time if necessary
+      while [ -e ~/.Trash/"$dst" ]; do
+        dst="$dst "$(date +%H-%M-%S)
+      done
+      mv "$path" ~/.Trash/"$dst"
+    fi
+  done
+}
+
+# Recursively delete `.DS_Store` files
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Empty the Trash on all mounted volumes and the main HDD
+# Also, clear Apple’s System Logs to improve shell startup speed
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# enable cliboard support in vim by using the app from MacVim
+#alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+

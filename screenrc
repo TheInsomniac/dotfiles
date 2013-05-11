@@ -1,0 +1,8 @@
+# Turn off the screen startup message startup_message off
+startup_message off
+
+# enable status line
+#hardstatus alwayslastline
+#hardstatus string "%{= g} %{= w}%-Lw%{=r}%n%f* %t%{-}%+LW"
+hardstatus alwayslastline "%{yk}[ %H ] %-Lw%50>%{gk}(%{-}%n-%t%{gk})%{-}%+Lw%< %=%{yk}[ %c %d.%m.%Y ]" 
+

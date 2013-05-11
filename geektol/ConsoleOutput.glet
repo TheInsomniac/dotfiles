@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BackgroundColor</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgAAhg==
+	</data>
+	<key>DropShadow</key>
+	<false/>
+	<key>FilePath</key>
+	<string>/private/var/log/system.log</string>
+	<key>FontFamily</key>
+	<string>Menlo-Regular</string>
+	<key>FontSize</key>
+	<real>11</real>
+	<key>ForceCR</key>
+	<true/>
+	<key>GeekletFrame</key>
+	<string>{{2, 28}, {1000, 500}}</string>
+	<key>HasShadow</key>
+	<false/>
+	<key>Identifier</key>
+	<string>org.tynsoe.geeklet.file</string>
+	<key>Name</key>
+	<string>Console Output</string>
+	<key>TextAlignment</key>
+	<integer>0</integer>
+	<key>TextColor</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMGhANA
+	QECEhIQITlNTdHJpbmcBlIQBKwZTeXN0ZW2GhJaYEmNvbnRyb2xTaGFkb3dDb2xvcoaE
+	k5UDhAJmZoOrqqo+AYaG
+	</data>
+	<key>TextStrikethrough</key>
+	<integer>0</integer>
+	<key>TextUnderline</key>
+	<integer>0</integer>
+</dict>
+</plist>

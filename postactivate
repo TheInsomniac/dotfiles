@@ -1,0 +1,1 @@
+PS1="\[$CYAN\][`basename \"$VIRTUAL_ENV\"`]\[$RESET\]$_OLD_VIRTUAL_PS1"
