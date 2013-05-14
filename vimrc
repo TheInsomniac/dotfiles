@@ -64,7 +64,7 @@ set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 colorscheme solarized
-set guifont=Menlo:h14
+set guifont=Inconsolata:h16
 set wrapmargin=8
 set ruler
 set expandtab

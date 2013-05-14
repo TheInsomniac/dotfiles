@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # enable Mac OSX specific bash settings
 if [ -f $HOME/.bashrc_osx ]; then
     . $HOME/.bashrc_osx
@@ -42,10 +45,9 @@ HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+
 # disable XON/XOFF in terminal to allow C-s forward bash search
-if [ -t 0 ]; then 
-    stty -ixon
-fi
+stty -ixon
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
