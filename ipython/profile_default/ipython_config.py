@@ -243,7 +243,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 # it is not applied if there are no more arguments on the line, and '2' for
 # 'full' autocall, where all callable objects are automatically called (even if
 # no arguments are present).
-# c.TerminalInteractiveShell.autocall = 0
+c.TerminalInteractiveShell.autocall = 0
 
 # Save multi-line entries as one entry in readline history
 # c.TerminalInteractiveShell.multiline_history = True
@@ -261,7 +261,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 # c.TerminalInteractiveShell.quiet = False
 
 # Enable auto setting the terminal title.
-# c.TerminalInteractiveShell.term_title = False
+c.TerminalInteractiveShell.term_title = True
 
 #
 # c.TerminalInteractiveShell.object_info_string_level = 0

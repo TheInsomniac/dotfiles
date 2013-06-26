@@ -13,6 +13,7 @@ Bundle 'klen/python-mode'
 Bundle 'sjl/vitality.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'ivanov/vim-ipython'
 
 filetype plugin indent on
 
@@ -170,14 +171,14 @@ let g:pymode_rope_always_show_complete_menu = 1
 set nofoldenable
 
 " Auto comment blocks of text
-" , #python # comments
-map ,# :s/^/#/<CR>
-" ,/ C/C++/C#/Java // comments
-map ,/ :s/^/\/\//<CR>
-" ,< HTML comment
-map ,< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
+" ; #python # comments
+map ;# :s/^/#/<CR>
+" ;/ C/C++/C#/Java // comments
+map ;/ :s/^/\/\//<CR>
+" ;< HTML comment
+map ;< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
 " c++ java style comments
-map ,* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
+map ;* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
 
 "Status line
 let g:virtualenv_stl_format = '[%n]'

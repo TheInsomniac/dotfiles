@@ -4,16 +4,17 @@ alias mvr='rsync -aP --no-whole-file --inplace --remove-source-files'
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias lsregister=/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
+  alias mvim='mvim > /dev/null 2>&1'
+  # Clean up LaunchServices to remove duplicates in the “Open With” menu
+  # alias
+  lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 fi
-
-# Clean up LaunchServices to remove duplicates in the “Open With” menu
-# alias
-lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 # enable dmesg with human readable timestamp on linux systems
 if [[ "$OSTYPE" = linux-gnu ]]; then
   alias dmesg="dmesg -T"
 fi
+
 #alias dds='dcfldd statusinterval=25 status=on bs=4M conv=notrunc'
 
 alias qtconsole='ipython qtconsole --colors=linux'
@@ -37,3 +38,4 @@ export SN=`netstat -nr| grep -m 1 -iE 'default|0.0.0.0' | awk '{print $2}' | sed
 
 alias tmux='tmux -CC'
 alias pv="pv -tpreb"
+alias updatedb='/usr/libexec/locate.updatedb'

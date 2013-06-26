@@ -1,5 +1,9 @@
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+#[ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
+
+#disable messages from other users
+mesg n
 
 # enable Mac OSX specific bash settings
 if [ -f $HOME/.bashrc_osx ]; then
@@ -23,13 +27,14 @@ RESET=$(tput sgr0)
 PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
 
 export CLICOLOR=1
+export SOLARIZED="dark"
 
 # Always use color output for `ls`
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	alias ls="command ls -G"
 else
   if [ -x /usr/bin/dircolors ]; then
-    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/dotfiles/dircolors.ansi-$SOLARIZED && eval `dircolors $HOME/dotfiles/dircolors.ansi-$SOLARIZED`
     alias ls='ls --color=auto'
   fi
 fi
@@ -110,6 +115,11 @@ function add-alias() {
     source $HOME/.aliases;
 }
 
+# batch change extension (chgext FROM TO)
+ chgext() {
+   for file in *.$1 ; do mv "$file" "${file%.$1}.$2" ; done
+}
+
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 else
@@ -120,16 +130,23 @@ if [ -f $HOME/.git-completion.bash ]; then
     . $HOME/.git-completion.bash
 fi
 
+# enable autojump if installed
+if [ -f /usr/local/etc/autojump.sh ]; then
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
+fi
+
 # Automatically "workon" Python virtualenv and deactivate when leaving.
 if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     workon_virtualenv() {
         if [ -e .venv ]; then
-            current_dir="${PWD##*/}"
+            #current_dir="${PWD##*/}"
             current_dir_root="${PWD}"
-            if [ -e $HOME/Envs/$current_dir ]; then
-                deactivate >/dev/null 2>&1
-                workon ${PWD##*/}
-            fi
+            deactivate > /dev/null 2>&1
+            workon "$(cat .venv)"
+            #if [ -e $HOME/Envs/$current_dir ]; then
+                #deactivate >/dev/null 2>&1
+                #workon ${PWD##*/}
+            ##fi
         fi
         if [[ $PWD/ != $current_dir_root/* ]]; then
         deactivate >/dev/null 2>&1
