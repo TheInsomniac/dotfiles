@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>12C60</string>
+	<string>11G56</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDocumentTypes</key>
@@ -26,13 +26,13 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>QuickJSON</string>
+	<string>QuickLookJSON</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.github.johan.quickjson</string>
+	<string>com.jade.quicklook.json</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>QuickJSON</string>
+	<string>QuickJLookSON</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
@@ -58,7 +58,7 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>4G1004</string>
+	<string>4G182</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
@@ -66,9 +66,11 @@
 	<key>DTSDKName</key>
 	<string>macosx10.8</string>
 	<key>DTXcode</key>
-	<string>0451</string>
+	<string>0450</string>
 	<key>DTXcodeBuild</key>
-	<string>4G1004</string>
+	<string>4G182</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>QLNeedsToBeRunInMainThread</key>
 	<true/>
 	<key>QLPreviewHeight</key>
