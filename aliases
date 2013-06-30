@@ -21,11 +21,11 @@ alias qtconsole='ipython qtconsole --colors=linux'
 alias df='df -h'
 
 # Quickly access directories
-alias Projects='cd ~/Projects'
-alias Git='cd ~/Git'
-alias Envs='cd ~/Envs'
-alias Downloads='cd ~/Downloads'
-alias Desktop='cd ~/Desktop'
+#alias Projects='cd ~/Projects'
+#alias Git='cd ~/Git'
+#alias Envs='cd ~/Envs'
+#alias Downloads='cd ~/Downloads'
+#alias Desktop='cd ~/Desktop'
 
 # Pushd and popd more accessible with +/-/?
 alias +='pushd'
@@ -39,3 +39,4 @@ export SN=`netstat -nr| grep -m 1 -iE 'default|0.0.0.0' | awk '{print $2}' | sed
 alias tmux='tmux -CC'
 alias pv="pv -tpreb"
 alias updatedb='/usr/libexec/locate.updatedb'
+alias tailn='tail -n 10'
