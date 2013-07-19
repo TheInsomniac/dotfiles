@@ -11,7 +11,7 @@ if [ -f $HOME/.bashrc_osx ]; then
 fi
 
 # Set default editor to vi for programs such as cron
-EDITOR=vi
+EDITOR=$(which vi)
 
 #RED=$(tput setaf 1)
 #GREEN=$(tput setaf 2)
