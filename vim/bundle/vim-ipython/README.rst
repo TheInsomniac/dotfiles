@@ -7,7 +7,7 @@ A two-way integration between Vim and IPython 0.11+
 * author: Paul Ivanov (http://pirsquared.org)
 * github: http://github.com/ivanov/vim-ipython
 * demos: http://pirsquared.org/vim-ipython/
-* blogpost: http://pirsquared.org/blog/2011/07/28/vim-ipython/
+* blogpost: http://pirsquared.org/blog/vim-ipython.html
 
 Using this plugin, you can send lines or whole files for IPython to
 execute, and also get back object introspection and word completions in
@@ -76,7 +76,9 @@ Now type out a line and send it to IPython using ``<Ctrl-S>`` from Command mode:
   import os
 
 You should see a notification message confirming the line was sent, along
-with the input number for the line, like so ``In[1]: import os``.
+with the input number for the line, like so ``In[1]: import os``. If
+``<Ctrl-S>`` did **not** work, see the `Known Issues <#known-issues>`_ for a
+work-around.
 
 ``<Ctrl-S>`` also works from insert mode, but doesn't show notification,
 unless ``monitor_subchannel`` is set to ``True`` (see `vim-ipython 'shell'`_,

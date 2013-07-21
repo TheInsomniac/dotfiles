@@ -14,6 +14,8 @@ Bundle 'sjl/vitality.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'ivanov/vim-ipython'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
@@ -184,3 +186,4 @@ map ;* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
 let g:virtualenv_stl_format = '[%n]'
 set laststatus=2
 set statusline=%{virtualenv#statusline()}\ %f%m%r%h%w\ %=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
+

@@ -71,8 +71,8 @@ function! s:Vitality() " {{{
         " Some escape sequences (but not all, lol) need to be properly escaped
         " to get them through tmux without being eaten.
 
-        let enable_focus_reporting = s:WrapForTmux(enable_focus_reporting)
-        let disable_focus_reporting = s:WrapForTmux(disable_focus_reporting)
+        let enable_focus_reporting = s:WrapForTmux(enable_focus_reporting) . enable_focus_reporting
+        let disable_focus_reporting = disable_focus_reporting
 
         let cursor_to_bar = s:WrapForTmux(cursor_to_bar)
         let cursor_to_block = s:WrapForTmux(cursor_to_block)
@@ -88,7 +88,7 @@ function! s:Vitality() " {{{
     " Trust me, you don't want to go down this rabbit hole.  Just keep them in
     " this order and no one gets hurt.
     if g:vitality_fix_focus
-        let &t_ti = enable_focus_reporting . save_screen
+        let &t_ti = cursor_to_block . enable_focus_reporting . save_screen
         let &t_te = disable_focus_reporting . restore_screen
     endif
 
@@ -122,9 +122,8 @@ function! s:Vitality() " {{{
         "
         " The goal is to fire the autocmd and restore the state as cleanly as
         " possible.  This is easy for some modes and hard/impossible for others.
-        "
-        " EXAMPLES:
-        nnoremap <silent> <f24> :doautocmd FocusLost %<cr>
+
+        nnoremap <silent> <f24> :silent doautocmd FocusLost %<cr>
         nnoremap <silent> <f25> :doautocmd FocusGained %<cr>
 
         onoremap <silent> <f24> <esc>:silent doautocmd FocusLost %<cr>
