@@ -1,0 +1,20 @@
+[{
+    "id": "view",
+    "children": [{
+        "id": "layout",
+        "children": [{
+             "command": "set_layout",
+             "caption" : "Custom: 3 Pane",
+             "mnemonic": "C",
+             "args": {
+                "cols": [0.0, 0.5, 1.0],
+                "rows": [0.0, 0.5, 1.0],
+                "cells": [
+                    [0, 0, 1, 1],
+                    [1, 0, 2, 1],
+                    [0, 1, 2, 2]
+                ]
+            }
+        }]
+    }]
+}]

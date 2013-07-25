@@ -9,19 +9,19 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " The bundles you install will be listed here
-Bundle 'klen/python-mode'
-Bundle 'sjl/vitality.vim'
+"Bundle 'klen/python-mode'
+"Bundle 'sjl/vitality.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmcantrell/vim-virtualenv'
 "Bundle 'ivanov/vim-ipython'
 "Bundle 'jelera/vim-javascript-syntax'
-"Bundle 'othree/javascript-libraries-syntax.vim'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'othree/javascript-libraries-syntax.vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'plasticboy/vim-markdown'
 "Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
-Bundle "pangloss/vim-javascript"
+"Bundle "pangloss/vim-javascript"
 
 filetype plugin indent on
 
@@ -51,8 +51,12 @@ set vb
 " Enable Wildmenu completion "
 set wildmenu
 set wildmode=longest:full,full
+set wildignore+=*.o,*.obj,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*.pyc
 
-"set hlsearch
+set hlsearch
 set incsearch
 set wrapscan
 set ignorecase
@@ -79,6 +83,9 @@ set shiftwidth=4
 set softtabstop=4
 "set autoindent
 
+"" Do not return to start of line
+set nostartofline
+
 vnoremap < <gv " better indentation
 vnoremap > >gv " same as above
 
@@ -104,77 +111,14 @@ augroup vimrc_autocmds
     autocmd FileType python set nowrap
 augroup END
 
-" Python-mode
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-
-" Documentation
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 0
-""let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_checker = "pyflakes"
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" Support virtualenv
-let g:pymode_virtualenv = 0
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
-
-" python-mode rope settings
-" Activate rope
-" Keys:
-" K             Show python docs
-" <Ctrl-Space>  Rope autocomplete
-" <Ctrl-c>g     Rope goto definition
-" <Ctrl-c>d     Rope show documentation
-" <Ctrl-c>f     Rope find occurrences
-
-" Load rope plugin
-let g:pymode_rope = 0
-" Remap <Ctrl-c>g for definitions to <leader>g
-""map <Leader>g :call RopeGotoDefinition()<CR>
-" Auto create and open ropeproject
-let g:pymode_rope_auto_project = 0
-" Enable autoimport
-let g:pymode_rope_enable_autoimport = 0
-" Auto generate global cache
-let g:pymode_rope_autoimport_generate = 0
-let g:pymode_rope_autoimport_underlineds = 0
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_codeassist_maxfixes = 10
-let g:pymode_rope_sorted_completions = 0
-let g:pymode_rope_extended_complete = 0
-let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-let g:pymode_rope_confirm_saving = 0
-let g:pymode_rope_global_prefix = "<C-x>p"
-let g:pymode_rope_local_prefix = "<C-c>r"
-let g:pymode_rope_vim_completion = 0
-let g:pymode_rope_guess_project = 0
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_always_show_complete_menu = 0
-
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+" Display invisible characters.
+if has("multi_byte")
+    set listchars=eol:$,tab:>-,extends:›,precedes:‹,trail:·,nbsp:✂
+    let &sbr = nr2char(8618).' ' " Show ↪ at the beginning of wrapped lines
+else
+    set listchars=tab:>-,extends:>,precedes:<,trail:-,nbsp:%
+    endif
+set nolist
 
 " Auto comment blocks of text
 " ; #python # comments
@@ -196,11 +140,38 @@ let g:used_javascript_libs = 'underscore,backbone, jquery, angularjs, requirejs'
 
 "You Complete Me
 "let g:ycm_complete_in_comments = 0
-"let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "Vim-Markdown
 let g:vim_markdown_folding_disabled=1
 
 "NERDTree
 nmap <leader>n :NERDTreeToggle <cr>
+" Quit on opening files from the tree
+let NERDTreeQuitOnOpen=1
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
+" Open NERDTree in same dir
+let NERDTreeChDirMode=1
+" Show hidden files by default
+let NERDTreeShowHidden=1
+
+"" Set GUI Options and scrollbars
+set guioptions=egmrLtTb
+
+"" Remove the 'tear bla bla from menus'
+set guioptions-=t
+
+" Keep undo history across sessions, by storing in file.
+set undodir=~/.vimundo
+set undofile
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+
+" Easy filetype switching
+nnoremap _md :set ft=markdown<CR>
+nnoremap _py :set ft=python<CR>
+nnoremap _js :set ft=javascript<CR>

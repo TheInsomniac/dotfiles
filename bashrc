@@ -83,6 +83,12 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 fi
 
+#Enable NODE.js virtualenv (nvm)
+if [ -x $HOME/NodeEnvs/nvm.sh ]; then
+    export NVM_DIR=$HOME/NodeEnvs
+    source $HOME/NodeEnvs/nvm.sh
+fi
+
 # Python Startup file
 if [ -f $HOME/.pythonstartup.py ]; then
     export PYTHONSTARTUP="$HOME/.pythonstartup.py"
@@ -157,4 +163,22 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     }
     alias cd="virtualenv_cd"
 fi
+# Quickly get image dimensions from the command line
+function imgsize() {
+        local width height
+        if [[ -f $1 ]]; then
+                height=$(sips -g pixelHeight "$1"|tail -n 1|awk '{print $2}')
+                width=$(sips -g pixelWidth "$1"|tail -n 1|awk '{print $2}')
+                echo "W: ${width} x H:${height}"
+                echo '<img href="$1" width="$width" height="$height">'
+        else
+                echo "File not found"
+        fi
+}
+
+# encode a given image file as base64 and output css background property to clipboard
+function 64enc() {
+        openssl base64 -in $1 | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "background:url(data:image/"ext";base64,"str1");" }'|pbcopy
+        echo "$1 encoded to clipboard"
+}
 

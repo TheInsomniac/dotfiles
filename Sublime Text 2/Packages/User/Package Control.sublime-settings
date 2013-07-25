@@ -1,0 +1,12 @@
+{
+	"installed_packages":
+	[
+		"JSHint",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Package Control",
+		"SublimeCodeIntel",
+		"SublimeREPL",
+		"Theme - Soda"
+	]
+}
