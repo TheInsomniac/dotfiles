@@ -1,11 +1,16 @@
 {
+	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"Emmet",
+		"Fix Mac Path",
 		"JavaScript Snippets",
 		"JSHint",
 		"Markdown Preview",
 		"MarkdownEditing",
 		"Package Control",
+		"SideBarEnhancements",
+		"SideBarGit",
 		"SublimeCodeIntel",
 		"SublimeREPL",
 		"Theme - Soda"

@@ -9,19 +9,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " The bundles you install will be listed here
-"Bundle 'klen/python-mode'
-"Bundle 'sjl/vitality.vim'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmcantrell/vim-virtualenv'
-"Bundle 'ivanov/vim-ipython'
-"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'plasticboy/vim-markdown'
-"Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
-"Bundle "pangloss/vim-javascript"
+Bundle 'godlygeek/tabular'
 
 filetype plugin indent on
 
@@ -57,6 +52,8 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*.pyc
 
 set hlsearch
+" Clear Search Highlight on _
+nnoremap <silent> _ :nohl<CR>
 set incsearch
 set wrapscan
 set ignorecase
@@ -72,9 +69,12 @@ set fo-=t
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+"colorscheme solarized
+colorscheme molokai
+let g:rehash256=1
+"let g:molokai_original=1
 set guifont=Inconsolata:h16
 set wrapmargin=8
 set ruler
@@ -175,3 +175,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 nnoremap _md :set ft=markdown<CR>
 nnoremap _py :set ft=python<CR>
 nnoremap _js :set ft=javascript<CR>
+
+" Tabularize
+nmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+nmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t: :Tabularize /:\zs<CR>

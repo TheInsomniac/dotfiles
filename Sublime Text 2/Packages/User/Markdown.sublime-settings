@@ -5,8 +5,7 @@
         "mdown",
         "mmd",
         "markdown",
-        "markmin",
-        "txt"
+        "markmin"
     ],
     "trim_trailing_white_space_on_save": false,
     "font_face": "Menlo",

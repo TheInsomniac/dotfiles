@@ -57,3 +57,5 @@ node_modules/**/*
 Sublime\ Text\ 2/Packages/User/SublimeREPLHistory
 Sublime\ Text\ 2/Packages/User/.SublimeREPLHistory
 Sublime\ Text\ 2/Packages/*/*.cache
+*.sublime-project
+*.sublime-workspace
