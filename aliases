@@ -7,9 +7,10 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias mvim='mvim > /dev/null 2>&1'
   alias qv='qlmanage -p "$@" > /dev/null 2>&1'
   alias qtconsole='ipython qtconsole --colors=linux'
+  alias finder='open -R'
   # Clean up LaunchServices to remove duplicates in the “Open With” menu
-  # alias
-  lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+  alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+  
 fi
 
 # enable dmesg with human readable timestamp on linux systems

@@ -101,6 +101,8 @@ fi
 
 #enable git prompt
 source $HOME/.git-prompt.bash
+#GIT_PS1_SHOWUNTRACKEDFILES='True'
+GIT_PS1_SHOWDIRTYSTATE='True'
 
 # Recursively delete `.pyc` files
 alias rmpyc="find . -type f -name '*.pyc' -ls -delete"

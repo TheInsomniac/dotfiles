@@ -5,6 +5,7 @@ Desktop.ini
 # Thumbnail cache files
 ._*
 Thumbs.db
+*.cache
 
 # Files that might appear on external disks
 .Spotlight-V100
@@ -46,8 +47,13 @@ env
 .git
 .gitignore
 
-tests/bldsc.html
+#Vim Bundles
+vim/bundle
 
-tests/sonos.html
+#Node
+node_modules/**/*
 
-tests/zwave.html
+#Sublime Text 2
+Sublime\ Text\ 2/Packages/User/SublimeREPLHistory
+Sublime\ Text\ 2/Packages/User/.SublimeREPLHistory
+Sublime\ Text\ 2/Packages/*/*.cache
