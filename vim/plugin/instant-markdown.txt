@@ -1,0 +1,4 @@
+Installation:
+
+[sudo] gem install redcarpet pygments.rb
+[sudo] npm -g install instant-markdown-d

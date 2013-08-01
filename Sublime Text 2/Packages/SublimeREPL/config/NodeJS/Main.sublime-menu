@@ -16,7 +16,7 @@
                     "type": "subprocess",
                     "encoding": "utf8",
                     "cmd": {"linux": ["node", "${packages}/SublimeREPL/config/NodeJS/repl.js"],
-                            "osx": ["/usr/local/bin/node", "${packages}/SublimeREPL/config/NodeJS/repl.js"],
+                            "osx": ["node", "${packages}/SublimeREPL/config/NodeJS/repl.js"],
                             "windows": ["node.exe", "${packages}/SublimeREPL/config/NodeJS/repl.js"]},
                     "cwd": "$file_path",
                     "syntax": "Packages/JavaScript/JavaScript.tmLanguage",

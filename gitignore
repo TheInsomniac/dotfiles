@@ -2,6 +2,12 @@
 .DS_Store
 Desktop.ini
 
+#Temp / tmp folders
+.tmp
+tmp
+temp
+.temp
+
 # Thumbnail cache files
 ._*
 Thumbs.db
@@ -59,3 +65,7 @@ Sublime\ Text\ 2/Packages/User/.SublimeREPLHistory
 Sublime\ Text\ 2/Packages/*/*.cache
 *.sublime-project
 *.sublime-workspace
+
+#Komodo Edit
+*.komodoproject
+.komodotools

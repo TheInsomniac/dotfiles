@@ -46,3 +46,4 @@ alias tailn='tail -n 10'
 # Recursively delete `.pyc` files
 alias rmpyc="find . -type f -name '*.pyc' -ls -delete"
 alias super="sudo supervisorctl -c /usr/local/share/supervisor/supervisord.conf"
+alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"

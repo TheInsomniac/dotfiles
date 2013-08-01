@@ -14,9 +14,11 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-Bundle 'plasticboy/vim-markdown'
+"Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'mbadran/headlights'
 
 filetype plugin indent on
 
@@ -181,3 +183,7 @@ nmap <Leader>t= :Tabularize /=<CR>
 vmap <Leader>t= :Tabularize /=<CR>
 nmap <Leader>t: :Tabularize /:\zs<CR>
 vmap <Leader>t: :Tabularize /:\zs<CR>
+
+" Markdown
+"vmap startmd :StartMarkdownServer
+"vmap stopmd :StopMarkdownServer
