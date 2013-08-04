@@ -187,3 +187,31 @@ vmap <Leader>t: :Tabularize /:\zs<CR>
 " Markdown
 "vmap startmd :StartMarkdownServer
 "vmap stopmd :StopMarkdownServer
+
+" Syntastic
+let g:syntastic_check_on_open = 1
+ " Put errors on left side
+let g:syntastic_enable_signs = 1
+" Only open location list when asked 
+let g:syntastic_auto_loc_list = 2
+" Popup on mouse hover
+let g:syntastic_enable_balloons = 1
+" Only 5 lines in loc_list
+let g:syntastic_loc_list_height=5
+" Add Syntastic error messages to the status bar
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_python_checkers=['pylint']
+if has('unix')
+    let g:syntastic_error_symbol = '⭑'
+    let g:syntastic_style_error_symbol = '>'
+    let g:syntastic_warning_symbol = '⚠'
+    let g:syntastic_style_warning_symbol = '>'
+else
+    let g:syntastic_error_symbol = '!'
+    let g:syntastic_style_error_symbol = '>'
+    let g:syntastic_warning_symbol = '.'
+    let g:syntastic_style_warning_symbol = '>'
+endif

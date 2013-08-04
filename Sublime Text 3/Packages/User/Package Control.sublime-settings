@@ -1,0 +1,19 @@
+{
+	"installed_packages":
+	[
+		"BracketHighlighter",
+		"GitGutter",
+		"JSHint Gutter",
+		"LiveReload",
+		"Markdown Extended",
+		"Markdown Preview",
+		"Monokai Extended",
+		"Package Control",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeREPL",
+		"Sublimerge",
+		"Theme - Soda",
+		"Web Inspector 3"
+	]
+}

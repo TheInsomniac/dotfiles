@@ -2,18 +2,23 @@
 	"auto_upgrade_last_run": null,
 	"installed_packages":
 	[
+		"BracketHighlighter",
+		"ColorPicker",
 		"Emmet",
 		"Fix Mac Path",
+		"HTML Mustache",
+		"IndentGuides",
 		"JavaScript Snippets",
-		"JSHint",
-		"Markdown Preview",
-		"MarkdownEditing",
+		"JSHint Gutter",
+		"Markdown Extended",
+		"Monokai Extended",
 		"Nodejs",
 		"Package Control",
 		"SideBarEnhancements",
 		"SideBarGit",
 		"SublimeCodeIntel",
 		"SublimeREPL",
-		"Theme - Soda"
+		"Theme - Soda",
+		"Web Inspector"
 	]
 }

@@ -38,7 +38,7 @@ alias ?='dirs -v'
 # or ssh $SN.100 to ssh to localsubnhet ip 192.168.10.100
 export SN=`netstat -nr| grep -m 1 -iE 'default|0.0.0.0' | awk '{print $2}' | sed 's/\.[0-9]*$//'`
 
-alias tmux='tmux -CC'
+#alias tmux='tmux -CC'
 alias pv="pv -tpreb"
 alias updatedb='/usr/libexec/locate.updatedb'
 alias tailn='tail -n 10'
@@ -47,3 +47,9 @@ alias tailn='tail -n 10'
 alias rmpyc="find . -type f -name '*.pyc' -ls -delete"
 alias super="sudo supervisorctl -c /usr/local/share/supervisor/supervisord.conf"
 alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
+
+#HTML / CSS / JS Tools
+# Compress .css and output -min.css
+alias compresscss="yuicompressor -o '.css$:-min.css' *.css"
+# Compress .js and output -min.js
+alias compressjs="yuicompressor -o '.js$:-min.js' *.js"

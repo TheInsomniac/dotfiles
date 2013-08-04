@@ -10,7 +10,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bashrc_osx aliases git-completion.bash git-prompt.bash vimrc \
     vim nanorc hushlogin inputrc osx_defaults pythonstartup.py muttrc mutt \
-    ipython screenrc"    # list of files/folders to symlink in homedir
+    ipython screenrc tmux.conf tmux, jshintrc"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -31,6 +31,17 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+#Sublime Text 2 and 3
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    mkdir ~/Application\ Support/Sublime\ Text\ 2\
+    ln -s $dir/Sublime\ Text\ 2\Packages ~/Application\ Support/Sublime\ Text\ 2\Packages
+    mkdir ~/Application\ Support/Sublime\ Text\ 3\
+    ln -s $dir/Sublime\ Text\ 3\Packages ~/Application\ Support/Sublime\ Text\ 3\Packages
+    ln -s $dir/Sublime\ Text\ 3\Installed\ Packages ~/Application\ Support/Sublime\ Text\ 3\Installed\ Packages
+fi
+
+
 
 # Copy geektool script only if OS is MAC OSX
 if [[ "$OSTYPE" =~ ^darwin ]]; then
