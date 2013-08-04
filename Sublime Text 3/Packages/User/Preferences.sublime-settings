@@ -100,7 +100,8 @@
 	"hot_exit": true,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Vintage",
+		"LiveReload"
 	],
 	"indent_guide_options":
 	[

@@ -115,7 +115,8 @@ following the instructions at:\n"""
     packageName = PLUGIN_FOLDER.replace(sublime.packages_path(), "")
 
     if int(sublime.version()) >= 3000:
-      icon = "Packages/" + packageName + "/warning.png"
+      icon = packageName + "/warning.png"
+      #icon = "Packages/" + packageName + "/warning.png"
       self.view.add_regions("jshint_errors", regions, "keyword", icon,
         sublime.DRAW_EMPTY |
         sublime.DRAW_NO_FILL |

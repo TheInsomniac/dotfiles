@@ -8,5 +8,5 @@
   "lint_on_edit": false,
 
   // Automatically lint when a file is saved.
-  "lint_on_save": false
+  "lint_on_save": true
 }

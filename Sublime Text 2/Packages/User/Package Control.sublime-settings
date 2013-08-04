@@ -6,11 +6,13 @@
 		"ColorPicker",
 		"Emmet",
 		"Fix Mac Path",
+		"GitGutter",
 		"HTML Mustache",
-		"IndentGuides",
 		"JavaScript Snippets",
 		"JSHint Gutter",
+		"LiveReload",
 		"Markdown Extended",
+		"Markdown Preview",
 		"Monokai Extended",
 		"Nodejs",
 		"Package Control",
@@ -18,7 +20,6 @@
 		"SideBarGit",
 		"SublimeCodeIntel",
 		"SublimeREPL",
-		"Theme - Soda",
-		"Web Inspector"
+		"Theme - Soda"
 	]
 }
