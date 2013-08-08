@@ -1,11 +1,12 @@
 {
   "devel": true,
+  "strict": true,
   "jquery": true,
   "node": true,
   "browser": true,
   "esnext": true,
   "globals": {},
-  "globalstrict": true,
+  "globalstrict": false,
   "quotmark": true,
   "smarttabs": true,
   "trailing": true,

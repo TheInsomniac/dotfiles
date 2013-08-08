@@ -19,6 +19,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'mbadran/headlights'
+Bundle 'elzr/vim-json'
 
 filetype plugin indent on
 
@@ -149,7 +150,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:vim_markdown_folding_disabled=1
 
 "NERDTree
-nmap <leader>n :NERDTreeToggle <cr>
+nmap <leader>n :NERDTreeToggle<CR>
+imap <leader>n <ESC>:NERDTreeToggle<CR>
+
 " Quit on opening files from the tree
 let NERDTreeQuitOnOpen=1
 " Highlight the selected entry in the tree
@@ -215,3 +218,7 @@ else
     let g:syntastic_warning_symbol = '.'
     let g:syntastic_style_warning_symbol = '>'
 endif
+
+" File tabs
+nmap <leader>t :tabnew<CR>
+imap <leader>t <ESC>:tabnew<CR>

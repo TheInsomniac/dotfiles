@@ -1,3 +1,0 @@
-[
-{ "keys": ["ctrl+c"], "command": "exec", "args": {"kill": true} }
-]
