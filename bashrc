@@ -25,7 +25,7 @@ RESET=$(tput sgr0)
 #PS1="[\u@\h \w\[$MAGENTA\]\$(__git_ps1)\[$RESET\]]\$ "
 #PS1='┌─[\u@\h][\[$BLUE\]\w\[$RESET\]]\n└─[\[$MAGENTA\]$(__git_ps1)\[$RESET\]\$] '
 PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
-
+PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
 export CLICOLOR=1
 export SOLARIZED="dark"
 
@@ -140,6 +140,9 @@ if [ -f /usr/local/etc/autojump.sh ]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 fi
 
+#set CDPATH for easy cd'ing
+export CDPATH=".:~:/Applications"
+
 # Automatically "workon" Python virtualenv and deactivate when leaving.
 if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     workon_virtualenv() {
@@ -181,3 +184,28 @@ function 64enc() {
         echo "$1 encoded to clipboard"
 }
 
+#make directory and then cd into it
+function md() {
+    mkdir -p "$*"
+    cd "$*"
+}
+
+# Create thumbnail from QL preview
+function thumb() {
+    target=$1
+    filename=`basename $1`
+    image="${TMPDIR}${filename}.png"
+    rsrc="${TMPDIR}icn.rsrc"
+    # Create a thumbnail from the file preview
+    qlmanage -t -s 512 -o ${TMPDIR} $target
+    # apply the image to itself as an thumbnail icon
+    sips -i $image
+    # Extract the icon resource
+    DeRez -only icns $image > $rsrc
+    # Make the target accept a custom icon
+    SetFile -a C $target
+    # Apply the icon resource to the target
+    Rez -append $rsrc -o $target
+    # clean up
+    rm $rsrc $image
+}

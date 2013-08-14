@@ -20,6 +20,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'mbadran/headlights'
 Bundle 'elzr/vim-json'
+Bundle 'mattn/emmet-vim'
 
 filetype plugin indent on
 
@@ -78,7 +79,7 @@ set background=dark
 colorscheme molokai
 let g:rehash256=1
 "let g:molokai_original=1
-set guifont=Inconsolata:h16
+set guifont=Inconsolata:h18
 set wrapmargin=8
 set ruler
 set expandtab
@@ -105,6 +106,8 @@ set pastetoggle=<leader>p
 
 " Enable clipboard support
 set clipboard=unnamed
+" force dd to not copy text to register/clipboard
+noremap dd "_dd"
 
 augroup vimrc_autocmds
     autocmd!
@@ -222,3 +225,6 @@ endif
 " File tabs
 nmap <leader>t :tabnew<CR>
 imap <leader>t <ESC>:tabnew<CR>
+
+" Emmet Completion
+imap <leader>e <C-y>,

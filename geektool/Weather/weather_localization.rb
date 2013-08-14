@@ -7,7 +7,7 @@ $mycity = 'Calgary, Canada'
 # f for fahrenheit, c for celsius
 $f_or_c = 'c'
 # folder where the weather icons are located, no trailing slash
-$basedir = '/Users/mark/dotfiles/geektol/Weather'
+$basedir = '/Users/mark/dotfiles/geektool/Weather'
 ### END CONFIG
 
 class Translate
