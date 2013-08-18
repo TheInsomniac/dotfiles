@@ -14,13 +14,18 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-"Bundle 'plasticboy/vim-markdown'
+Bundle 'tpope/vim-markdown'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'mbadran/headlights'
 Bundle 'elzr/vim-json'
 Bundle 'mattn/emmet-vim'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'wavded/vim-stylus'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'jaxbot/brolink.vim'
 
 filetype plugin indent on
 
@@ -52,7 +57,7 @@ set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*.obj,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*
 set wildignore+=*/node_modules/*
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 set wildignore+=*.pyc
 
 set hlsearch
@@ -79,7 +84,7 @@ set background=dark
 colorscheme molokai
 let g:rehash256=1
 "let g:molokai_original=1
-set guifont=Inconsolata:h18
+set guifont=Inconsolata\ for\ Powerline:h18
 set wrapmargin=8
 set ruler
 set expandtab
@@ -137,9 +142,28 @@ map ;< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
 map ;* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
 
 "Status line
-let g:virtualenv_stl_format = '[%n]'
+"let g:virtualenv_stl_format = '[%n]'
+"set statusline=%{virtualenv#statusline()}\ %f%m%r%h%w\ %=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
 set laststatus=2
-set statusline=%{virtualenv#statusline()}\ %f%m%r%h%w\ %=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
+set noshowmode
+
+" Vim Airline statusline
+let g:airline_powerline_fonts = 1
+let g:airline_detect_paste = 1
+let g:airline_detect_whitespace=0 "disabled"
+let g:airline_theme='bubblegum'
+let g:airline_detect_modified=1
+let g:airline_enable_syntastic = 0
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '◀'
+let g:airline_branch_prefix = ' '
+let g:airline_readonly_symbol = ''
+let g:airline_linecolumn_prefix = ' '
 
 "Javascript Syntax Highlighting
 let g:used_javascript_libs = 'underscore,backbone, jquery, angularjs, requirejs'
@@ -148,9 +172,6 @@ let g:used_javascript_libs = 'underscore,backbone, jquery, angularjs, requirejs'
 "let g:ycm_complete_in_comments = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-
-"Vim-Markdown
-let g:vim_markdown_folding_disabled=1
 
 "NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -205,9 +226,9 @@ let g:syntastic_enable_balloons = 1
 " Only 5 lines in loc_list
 let g:syntastic_loc_list_height=5
 " Add Syntastic error messages to the status bar
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_python_checkers=['pylint']
 if has('unix')
@@ -227,4 +248,48 @@ nmap <leader>t :tabnew<CR>
 imap <leader>t <ESC>:tabnew<CR>
 
 " Emmet Completion
+" let <leader>e complet emmet snippets in case the below doesn't work
+" for some really nested tags
 imap <leader>e <C-y>,
+" Enable tab to complete emmet snippets
+function! s:emmet_html_tab()
+    let line = getline('.')
+    if match(line, '<.*>') >= 0
+        return "\<C-y>n"
+    endif
+    return "\<C-y>,"
+endfunction
+autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
+
+" Decrease escape timeout
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+"Brolink
+let g:bl_no_implystart = 1 " Disable autostart of Brolink
+"au InsertLeave *.css :BLReloadCSS
+"au InsertLeave *.html :BLReloadPage
+" -----
+" Add below to brolink.vim to allow ';bro' to start brolink
+"nmap <silent> <leader>bro :call <SID>Start()<CR>:echo "Starting Brolink..."<CR>
+" -----
+"Use the below userscript in Greasemonkey or Tampermonkey
+"// ==UserScript==
+"// @name       Brolink Embed
+"// @namespace  https://github.com/jaxbot/brolink.vim
+"// @version    0.1
+"// @description  VIM Brolink
+"// @match      file://localhost/*
+"// @copyright  2012+, You
+"// ==/UserScript==
+"
+"var src = document.createElement('script');
+"src.src = 'http://127.0.0.1:9001/socket.js';
+"src.async = true;
+"document.head.appendChild(src);

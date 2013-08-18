@@ -26,6 +26,7 @@ RESET=$(tput sgr0)
 #PS1='┌─[\u@\h][\[$BLUE\]\w\[$RESET\]]\n└─[\[$MAGENTA\]$(__git_ps1)\[$RESET\]\$] '
 PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
 PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
+#. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
 export CLICOLOR=1
 export SOLARIZED="dark"
 
@@ -141,7 +142,7 @@ if [ -f /usr/local/etc/autojump.sh ]; then
 fi
 
 #set CDPATH for easy cd'ing
-export CDPATH=".:~:/Applications"
+#export CDPATH=".:~:/Applications"
 
 # Automatically "workon" Python virtualenv and deactivate when leaving.
 if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
