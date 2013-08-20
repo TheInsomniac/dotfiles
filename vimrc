@@ -15,7 +15,7 @@ Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'mbadran/headlights'
@@ -26,6 +26,9 @@ Bundle 'wavded/vim-stylus'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'jaxbot/brolink.vim'
+Bundle 'eiginn/netrw'
+Bundle 'itspriddle/vim-jquery'
+Bundle 'kchmck/vim-coffee-script'
 
 filetype plugin indent on
 
@@ -39,6 +42,13 @@ autocmd! bufwritepost .vimrc source %
 
 " Rebind <Leader> key
 let mapleader = ";"
+
+" Map CTRL-S to save buffer
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> :w<CR>
+" Map CTRL-Q to quit
+nnoremap <silent> <C-q> :q<CR>
+inoremap <silent> <C-q> :q<CR>
 
 " automatically change window's cwd to file's dir
 set autochdir
@@ -91,6 +101,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 "set autoindent
+set backspace=indent,eol,start 
 
 "" Do not return to start of line
 set nostartofline
@@ -108,18 +119,46 @@ syntax on
 
 " Toggle auto-indent before clipboard paste
 set pastetoggle=<leader>p
+" Enable OSX Terminal/iTerm2 paste ability
+if exists('$ITERM_PROFILE') || exists('$TMUX')
+  let &t_ti = "\<Esc>[?2004h" . &t_ti
+  let &t_te = "\<Esc>[?2004l" . &t_te
+
+  function! XTermPasteBegin(ret)
+    set pastetoggle=<Esc>[201~
+    set paste
+    return a:ret
+  endfunction
+
+  execute "set <f28>=\<Esc>[200~"
+  execute "set <f29>=\<Esc>[201~"
+  map <expr> <f28> XTermPasteBegin("i")
+  imap <expr> <f28> XTermPasteBegin("")
+  vmap <expr> <f28> XTermPasteBegin("c")
+  cmap <f28> <nop>
+  cmap <f29> <nop>
+end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copy paste system clipboard
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>y "*y
+map <leader>p "*p
+map <leader>P "*P
 
 " Enable clipboard support
 set clipboard=unnamed
 " force dd to not copy text to register/clipboard
 noremap dd "_dd"
+" Yank from the cursor to the end of the line, to be consistent
+nnoremap Y y$
 
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 78
-    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python match Excess /\%78v.*/
-    autocmd FileType python set nowrap
+    autocmd FileType * highlight Excess ctermbg=DarkGrey guibg=Black
+    autocmd FileType * match Excess /\%78v.*/
+    " Remove trailing whitespace automagically
+    autocmd BufWritePre *.rb,*.coffee,*.js :%s/\s\+$//e
 augroup END
 
 " Display invisible characters.
@@ -132,14 +171,18 @@ else
 set nolist
 
 " Auto comment blocks of text
-" ; #python # comments
-map ;# :s/^/#/<CR>
+" ;" vim " comments
+map <leader>" :s/^/"/<CR>
+map <leader>-" :s/"//<CR>
+" ;# python # comments
+map <leader># :s/^/#/<CR>
+map <leader>-# :s/#//<CR>
 " ;/ C/C++/C#/Java // comments
-map ;/ :s/^/\/\//<CR>
+map <leader>/ :s/^/\/\//<CR>
 " ;< HTML comment
-map ;< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
+map <leader>< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
 " c++ java style comments
-map ;* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
+map <leader>* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
 
 "Status line
 "let g:virtualenv_stl_format = '[%n]'
@@ -173,18 +216,48 @@ let g:used_javascript_libs = 'underscore,backbone, jquery, angularjs, requirejs'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" NETRW
+" Toggle Vexplore with ;n
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <leader>n :call ToggleVExplorer()<CR>
+let g:netrw_browse_split = 3
+let g:netrw_altv          = 1
+let g:netrw_fastbrowse    = 2
+let g:netrw_keepdir       = 0
+let g:netrw_liststyle     = 1
+let g:netrw_retmap        = 1
+let g:netrw_silent        = 1
+let g:netrw_special_syntax= 1
+
 "NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-imap <leader>n <ESC>:NERDTreeToggle<CR>
+"nmap <leader>n :NERDTreeToggle<CR>
+"imap <leader>n <ESC>:NERDTreeToggle<CR>
 
 " Quit on opening files from the tree
-let NERDTreeQuitOnOpen=1
+"let NERDTreeQuitOnOpen=1
 " Highlight the selected entry in the tree
-let NERDTreeHighlightCursorline=1
+"let NERDTreeHighlightCursorline=1
 " Open NERDTree in same dir
-let NERDTreeChDirMode=1
+"let NERDTreeChDirMode=1
 " Show hidden files by default
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 
 "" Set GUI Options and scrollbars
 set guioptions=egmrLtTb
@@ -206,14 +279,22 @@ nnoremap _py :set ft=python<CR>
 nnoremap _js :set ft=javascript<CR>
 
 " Tabularize
-nmap <Leader>t= :Tabularize /=<CR>
-vmap <Leader>t= :Tabularize /=<CR>
-nmap <Leader>t: :Tabularize /:\zs<CR>
-vmap <Leader>t: :Tabularize /:\zs<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 " Markdown
 "vmap startmd :StartMarkdownServer
 "vmap stopmd :StopMarkdownServer
+" Open current markdown file in marked.app
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>:redraw!<cr>
 
 " Syntastic
 let g:syntastic_check_on_open = 1
@@ -262,23 +343,26 @@ endfunction
 autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
 
 " Decrease escape timeout
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+"if ! has('gui_running')
+"    set ttimeoutlen=30
+"    augroup FastEscape
+"        autocmd!
+"        au InsertEnter * set timeoutlen=0
+"        au InsertLeave * set timeoutlen=1000
+"    augroup END
+"endif
 
 "Brolink
 let g:bl_no_implystart = 1 " Disable autostart of Brolink
 "au InsertLeave *.css :BLReloadCSS
 "au InsertLeave *.html :BLReloadPage
 " -----
-" Add below to brolink.vim to allow ';bro' to start brolink
-"nmap <silent> <leader>bro :call <SID>Start()<CR>:echo "Starting Brolink..."<CR>
-" -----
+" Add below to brolink.vim to allow ':Brolink' to start brolink
+"command Brolink call <SID>Start()
+" Add to start function in brolink.vim to open current buffer in browser
+"                silent !open '%:p'
+"                redraw!
+"                call s:setupHandlers()
 "Use the below userscript in Greasemonkey or Tampermonkey
 "// ==UserScript==
 "// @name       Brolink Embed
