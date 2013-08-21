@@ -9,26 +9,59 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " The bundles you install will be listed here
-Bundle 'Townk/vim-autoclose'
+" Auto close most tags
+Bundle 'Raimondi/delimitMate'
+" Auto close html tags
+Bundle 'docunext/closetag.vim'
+" Support python virtualenvs
 Bundle 'jmcantrell/vim-virtualenv'
+" javascript syntax highlighting
 Bundle 'othree/javascript-libraries-syntax.vim'
+" Awesome auto completion for most languages
 Bundle 'Valloric/YouCompleteMe'
+" Syntax Checker
 Bundle 'scrooloose/syntastic'
+" Markdown Highlighting
 Bundle 'tpope/vim-markdown'
-"Bundle 'scrooloose/nerdtree'
+" Tabular formatting 
 Bundle 'godlygeek/tabular'
+" Highlight/flash matching tags
 Bundle 'Valloric/MatchTagAlways'
+" Show installed bundles in MacVim/GVim
 Bundle 'mbadran/headlights'
+" JSON syntax highlighting & prettyfying
 Bundle 'elzr/vim-json'
+" Emmet html snippet support
 Bundle 'mattn/emmet-vim'
+" Jade Templating Support
 Bundle 'digitaltoad/vim-jade'
+" Stylus (CSS) support
 Bundle 'wavded/vim-stylus'
+" Pretty Status Bars
 Bundle 'bling/vim-airline'
+" Git Support
 Bundle 'tpope/vim-fugitive'
+" HTML & CSS Live Preview
 Bundle 'jaxbot/brolink.vim'
+" Updated netrw (Vim's native filemanager)
 Bundle 'eiginn/netrw'
-Bundle 'itspriddle/vim-jquery'
+" jQuery syntax highlighting
+"Bundle 'itspriddle/vim-jquery'
+" Coffeescript highlighting
 Bundle 'kchmck/vim-coffee-script'
+" Run a terminal within Vim
+Bundle 'vim-scripts/Conque-Shell'
+" Javascript completion
+Bundle 'marijnh/tern_for_vim'
+" Show indent guides
+Bundle 'nathanaelkane/vim-indent-guides'
+" Display CTERMBG and GUIBG color pallete
+Bundle 'guns/xterm-color-table.vim'
+" Snipmate / snippet support
+Bundle 'SirVer/ultisnips'
+" Display git status in gutter
+Bundle 'airblade/vim-gitgutter'
+Bundle 'kien/rainbow_parentheses.vim'
 
 filetype plugin indent on
 
@@ -82,7 +115,7 @@ set showmatch
 set bs=2
 set mouse=a
 " set columns=80
-set tw=79
+set tw=80
 set nowrap
 set fo-=t
 set colorcolumn=80
@@ -98,8 +131,8 @@ set guifont=Inconsolata\ for\ Powerline:h18
 set wrapmargin=8
 set ruler
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 "set autoindent
 set backspace=indent,eol,start 
 
@@ -109,13 +142,12 @@ set nostartofline
 vnoremap < <gv " better indentation
 vnoremap > >gv " same as above
 
-"autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
 set number
 set cul
 syntax on
-"command W w !sudo tee % > /dev/null
-"command Ioff set noautoindent
-"command Ion set autoindent
+
+" Enable sudo writing of files
+command! W w !sudo tee % > /dev/null
 
 " Toggle auto-indent before clipboard paste
 set pastetoggle=<leader>p
@@ -150,15 +182,25 @@ set clipboard=unnamed
 " force dd to not copy text to register/clipboard
 noremap dd "_dd"
 " Yank from the cursor to the end of the line, to be consistent
+" with C and D
 nnoremap Y y$
 
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 78
-    autocmd FileType * highlight Excess ctermbg=DarkGrey guibg=Black
+    autocmd FileType * highlight Excess ctermbg=237 guibg=#3a3a3a
     autocmd FileType * match Excess /\%78v.*/
     " Remove trailing whitespace automagically
     autocmd BufWritePre *.rb,*.coffee,*.js :%s/\s\+$//e
+    "Python
+    "autocmd FileType python set softtabstop=4 | set shiftwidth=4
+    " Disable delimiteMate for vimrc
+    autocmd FileType vim let b:delimitMate_autoclose = 0 
+    "Rainbow Parentheses
+    autocmd VimEnter * RainbowParenthesesToggle
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
 " Display invisible characters.
@@ -202,8 +244,6 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '◀'
 let g:airline_branch_prefix = ' '
 let g:airline_readonly_symbol = ''
 let g:airline_linecolumn_prefix = ' '
@@ -246,28 +286,22 @@ let g:netrw_retmap        = 1
 let g:netrw_silent        = 1
 let g:netrw_special_syntax= 1
 
-"NERDTree
-"nmap <leader>n :NERDTreeToggle<CR>
-"imap <leader>n <ESC>:NERDTreeToggle<CR>
-
-" Quit on opening files from the tree
-"let NERDTreeQuitOnOpen=1
-" Highlight the selected entry in the tree
-"let NERDTreeHighlightCursorline=1
-" Open NERDTree in same dir
-"let NERDTreeChDirMode=1
-" Show hidden files by default
-"let NERDTreeShowHidden=1
-
 "" Set GUI Options and scrollbars
-set guioptions=egmrLtTb
+set guioptions=eg
 
 "" Remove the 'tear bla bla from menus'
 set guioptions-=t
 
+"" Add window transparency
+set transparency=10
+
 " Keep undo history across sessions, by storing in file.
+if !isdirectory(expand('~/.vimundo'))
+  call mkdir(expand('~/.vimundo'), 'p', 0700)
+endif
 set undodir=~/.vimundo
 set undofile
+"set viminfo+=n~/.viminfo
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -341,6 +375,35 @@ function! s:emmet_html_tab()
     return "\<C-y>,"
 endfunction
 autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
+
+" Relative Numbers
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
+
+"Closetags
+autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
+
+"Conque Shell
+function! s:Terminal()
+  execute 'ConqueTermSplit bash --login'
+endfunction
+command! Term call s:Terminal()
+
+"Indent Guide
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3a3a3a ctermbg=237
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+"UltiSnip
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsSnippetDirectories = ['.snippets', 'snippets']
+
+" Git gutter
+highlight SignColumn ctermbg=235 guibg=#262626
 
 " Decrease escape timeout
 "if ! has('gui_running')
