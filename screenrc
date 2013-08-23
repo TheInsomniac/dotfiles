@@ -4,5 +4,5 @@ startup_message off
 # enable status line
 #hardstatus alwayslastline
 #hardstatus string "%{= g} %{= w}%-Lw%{=r}%n%f* %t%{-}%+LW"
-hardstatus alwayslastline "%{yk}[ %H ] %-Lw%50>%{gk}(%{-}%n-%t%{gk})%{-}%+Lw%< %=%{yk}[ %c %d.%m.%Y ]" 
+hardstatus alwayslastline "%{Bk}[ %{wk}%H %{Bk}] %-Lw%50>%{Bk}[ %{-}%{mk}%n-%t %{Bk}]%{-}%+Lw%< %=%{Bk}[%{ck} %c %d.%m.%Y %{Bk}]" 
 

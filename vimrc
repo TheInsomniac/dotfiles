@@ -42,7 +42,7 @@ Bundle 'bling/vim-airline'
 " Git Support
 Bundle 'tpope/vim-fugitive'
 " HTML & CSS Live Preview
-Bundle 'jaxbot/brolink.vim'
+Bundle 'manxam/brolink.vim'
 " Updated netrw (Vim's native filemanager)
 Bundle 'eiginn/netrw'
 " jQuery syntax highlighting
@@ -60,8 +60,13 @@ Bundle 'guns/xterm-color-table.vim'
 " Snipmate / snippet support
 Bundle 'SirVer/ultisnips'
 " Display git status in gutter
-Bundle 'airblade/vim-gitgutter'
+Bundle 'mhinz/vim-signify'
+" Match parentheses in specific colors
 Bundle 'kien/rainbow_parentheses.vim'
+" Node.JS support
+Bundle 'moll/vim-node'
+" Sublime Text type multiple cursors
+Bundle 'terryma/vim-multiple-cursors'
 
 filetype plugin indent on
 
@@ -359,8 +364,8 @@ else
 endif
 
 " File tabs
-nmap <leader>t :tabnew<CR>
-imap <leader>t <ESC>:tabnew<CR>
+"nmap <leader>t :tabnew<CR>
+"imap <leader>t <ESC>:tabnew<CR>
 
 " Emmet Completion
 " let <leader>e complet emmet snippets in case the below doesn't work
@@ -402,41 +407,31 @@ let g:indent_guides_guide_size = 1
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsSnippetDirectories = ['.snippets', 'snippets']
 
-" Git gutter
-highlight SignColumn ctermbg=235 guibg=#262626
+" Signify
+let g:signify_vcs_list = [ 'git', 'hg' ] 
+let g:signify_sign_overwrite = 0
+highlight link SignifySignAdd    DiffAdd
+highlight link SignifySignChange DiffChange
+highlight link SignifySignDelete DiffDelete
+highlight SignifySignAdd    cterm=bold ctermbg=235  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=235  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=235  ctermfg=227
+
+" Tern
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
 
 " Decrease escape timeout
 "if ! has('gui_running')
 "    set ttimeoutlen=30
-"    augroup FastEscape
-"        autocmd!
-"        au InsertEnter * set timeoutlen=0
-"        au InsertLeave * set timeoutlen=1000
-"    augroup END
+augroup FastEscape
+  autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+augroup END
 "endif
 
 "Brolink
 let g:bl_no_implystart = 1 " Disable autostart of Brolink
 "au InsertLeave *.css :BLReloadCSS
 "au InsertLeave *.html :BLReloadPage
-" -----
-" Add below to brolink.vim to allow ':Brolink' to start brolink
-"command Brolink call <SID>Start()
-" Add to start function in brolink.vim to open current buffer in browser
-"                silent !open '%:p'
-"                redraw!
-"                call s:setupHandlers()
-"Use the below userscript in Greasemonkey or Tampermonkey
-"// ==UserScript==
-"// @name       Brolink Embed
-"// @namespace  https://github.com/jaxbot/brolink.vim
-"// @version    0.1
-"// @description  VIM Brolink
-"// @match      file://localhost/*
-"// @copyright  2012+, You
-"// ==/UserScript==
-"
-"var src = document.createElement('script');
-"src.src = 'http://127.0.0.1:9001/socket.js';
-"src.async = true;
-"document.head.appendChild(src);
