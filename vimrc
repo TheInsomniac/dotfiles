@@ -98,6 +98,7 @@ set nostartofline
 
 " Show column numbers
 set number
+set relativenumber
 " Relative Numbers off during insert. On otherwise
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
@@ -150,6 +151,12 @@ set guioptions=eg
 set guioptions-=t
 " Add window transparency
 set transparency=10
+
+" Add menu Tab
+amenu <silent> T&abs.&New :confirm tabnew<cr>
+amenu <silent> T&abs.&Previous :tabprevious<cr>
+amenu <silent> T&abs.Ne&xt :tabnext<cr>
+amenu <silent> T&abs.&Delete :confirm tabclose<cr>
 
  " }
 

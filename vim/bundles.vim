@@ -19,8 +19,6 @@ Bundle 'godlygeek/tabular'
 Bundle 'Valloric/MatchTagAlways'
 " Show installed bundles in MacVim/GVim
 Bundle 'mbadran/headlights'
-" JSON syntax highlighting & prettyfying
-Bundle 'elzr/vim-json'
 " Emmet html snippet support
 Bundle 'mattn/emmet-vim'
 " Jade Templating Support
@@ -57,4 +55,6 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'moll/vim-node'
 " Sublime Text type multiple cursors
 Bundle 'terryma/vim-multiple-cursors'
+" JSON syntax highlighting & prettyfying
+Bundle 'elzr/vim-json'
 
