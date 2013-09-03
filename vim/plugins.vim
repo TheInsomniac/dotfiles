@@ -140,8 +140,8 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 "UltiSnip
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsSnippetDirectories = ['.snippets', 'snippets']
+"let g:UltiSnipsExpandTrigger = '<c-j>'
+"let g:UltiSnipsSnippetDirectories = ['.snippets', 'snippets']
 
 " Signify
 let g:signify_vcs_list = [ 'git', 'hg' ] 
@@ -161,4 +161,9 @@ let g:tern_show_argument_hints='on_hold'
 let g:bl_no_implystart = 1 " Disable autostart of Brolink
 "au InsertLeave *.css :BLReloadCSS
 "au InsertLeave *.html :BLReloadPage
+
+" Vim Slime
+let g:slime_target = "screen"
+"let g:slime_paste_file = "/tmp/vim-slime"
+let g:slime_paste_file = tempname()
 

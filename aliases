@@ -54,3 +54,9 @@ alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
 alias compresscss="yuicompressor -o '.css$:-min.css' *.css"
 # Compress .js and output -min.js
 alias compressjs="yuicompressor -o '.js$:-min.js' *.js"
+
+# Syntax Highlighted Cat command
+alias ccat='pygmentize -g'
+# show line numbers using grep
+alias grep='grep -n'
+

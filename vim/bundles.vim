@@ -57,4 +57,5 @@ Bundle 'moll/vim-node'
 Bundle 'terryma/vim-multiple-cursors'
 " JSON syntax highlighting & prettyfying
 Bundle 'elzr/vim-json'
-
+" Output text to named screen/tmux session (perfect for REPL)
+Bundle 'jpalardy/vim-slime'

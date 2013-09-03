@@ -6,6 +6,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
+" load bundles from bundles.vim
+" Keep here instead of loading with external configs at bottom as these need
+" to proceed the 'filetype plugin indent on' setting
+source $HOME/.vim/bundles.vim
+
 filetype plugin indent on
 
 " No startup messages
@@ -163,7 +168,7 @@ amenu <silent> T&abs.&Delete :confirm tabclose<cr>
  " External Configuration Files {
 
 " load bundles from bundles.vim
-source $HOME/.vim/bundles.vim
+"source $HOME/.vim/bundles.vim
 
 " load key mappings from mappings.vim
 source $HOME/.vim/mappings.vim
