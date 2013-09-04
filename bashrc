@@ -6,7 +6,7 @@
 mesg n
 
 # enable Mac OSX specific bash settings
-if [ -f $HOME/.bashrc_osx ]; then
+if [ -f $HOME/.bashrc_osx ] && [[ "$OSTYPE" =~ ^darwin ]]; then
     . $HOME/.bashrc_osx
 fi
 
@@ -22,11 +22,17 @@ MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
-#PS1="[\u@\h \w\[$MAGENTA\]\$(__git_ps1)\[$RESET\]]\$ "
-#PS1='┌─[\u@\h][\[$BLUE\]\w\[$RESET\]]\n└─[\[$MAGENTA\]$(__git_ps1)\[$RESET\]\$] '
 PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
-PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
-#. /Library/Python/2.7/site-packages/powerline/bindings/bash/powerline.sh
+if [[ "$HOSTNAME" = "lappy" ]]; then 
+  PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
+else
+  PROMPT_COMMAND='echo -ne "\033]0;[$HOSTNAME][${PWD/#$HOME/~}]\007"'
+fi
+# Powerline
+#if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh ]; then
+#    source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+#fi
+
 export CLICOLOR=1
 export SOLARIZED="dark"
 
@@ -191,25 +197,6 @@ function md() {
     cd "$*"
 }
 
-# Create thumbnail from QL preview
-function thumb() {
-    target=$1
-    filename=`basename $1`
-    image="${TMPDIR}${filename}.png"
-    rsrc="${TMPDIR}icn.rsrc"
-    # Create a thumbnail from the file preview
-    qlmanage -t -s 512 -o ${TMPDIR} $target
-    # apply the image to itself as an thumbnail icon
-    sips -i $image
-    # Extract the icon resource
-    DeRez -only icns $image > $rsrc
-    # Make the target accept a custom icon
-    SetFile -a C $target
-    # Apply the icon resource to the target
-    Rez -append $rsrc -o $target
-    # clean up
-    rm $rsrc $image
-}
 ###-begin-npm-completion-###
 #
 # npm command completion script

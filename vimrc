@@ -13,6 +13,9 @@ source $HOME/.vim/bundles.vim
 
 filetype plugin indent on
 
+" Supported file formats
+set fileformats=unix,dos,mac
+
 " No startup messages
 set shm+=atmI 
 

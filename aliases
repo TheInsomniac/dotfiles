@@ -12,6 +12,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
   alias nw="open -n -a node-webkit"
   alias mvim='/usr/local/bin/mvim --remote-tab-silent'  
+  alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
 fi
 
 # enable dmesg with human readable timestamp on linux systems
@@ -46,8 +47,8 @@ alias tailn='tail -n 10'
 
 # Recursively delete `.pyc` files
 alias rmpyc="find . -type f -name '*.pyc' -ls -delete"
+# shortcut to supervisorctl
 alias super="sudo supervisorctl -c /usr/local/share/supervisor/supervisord.conf"
-alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
 
 #HTML / CSS / JS Tools
 # Compress .css and output -min.css
@@ -60,3 +61,10 @@ alias ccat='pygmentize -g'
 # show line numbers using grep
 alias grep='grep -n'
 
+# Git aliases
+alias gits='git status'
+alias gitc='git commit -a -m'
+alias gitp='git push'
+alias gitd='git diff'
+alias gita='git add'
+alias gitg='open -a GitHub.app'

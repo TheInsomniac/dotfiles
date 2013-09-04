@@ -3,6 +3,7 @@ export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20
 # Setting PATH for Python 2.7
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 PATH="/usr/local/sbin:${PATH}"
+PATH="~/Library/Python/2.7/bin:${PATH}"
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 # Deleted files with go to Trash instead of being deleted immediately.
@@ -35,3 +36,48 @@ alias sudo='sudo '
 # enable cliboard support in vim by using the app from MacVim
 #alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 
+# Create thumbnail from QL preview
+function thumb() {
+    target=$1
+    filename=`basename $1`
+    image="${TMPDIR}${filename}.png"
+    rsrc="${TMPDIR}icn.rsrc"
+    # Create a thumbnail from the file preview
+    qlmanage -t -s 512 -o ${TMPDIR} $target
+    # apply the image to itself as an thumbnail icon
+    sips -i $image
+    # Extract the icon resource
+    DeRez -only icns $image > $rsrc
+    # Make the target accept a custom icon
+    SetFile -a C $target
+    # Apply the icon resource to the target
+    Rez -append $rsrc -o $target
+    # clean up
+    rm $rsrc $image
+}
+
+#iTerm Tab Colors
+tab-color() {
+    echo -ne "\033]6;1;bg;red;brightness;$1\a"
+    echo -ne "\033]6;1;bg;green;brightness;$2\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+tab-reset() {
+    echo -ne "\033]6;1;bg;*;default\a"
+}
+
+# Change the color of the tab when using SSH
+# reset the color after the connection closes
+color-ssh() {
+    if [[ -n "$ITERM_SESSION_ID" ]]; then
+        trap "tab-reset" INT EXIT
+        #if [[ "$*" =~ "production|ec2-.*compute-1" ]]; then
+        #    tab-color 255 0 0
+        #else
+        tab-color 170 0 255 
+        #fi
+    fi
+    ssh $*
+}
+ 
+alias ssh=color-ssh
