@@ -78,6 +78,8 @@ color-ssh() {
         #fi
     fi
     ssh $*
+    # Reset tab color on exit SSH session
+    tab-reset
 }
  
 alias ssh=color-ssh
