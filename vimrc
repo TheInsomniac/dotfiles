@@ -158,7 +158,9 @@ set guioptions=eg
 " Remove the 'tear bla bla from menus'
 set guioptions-=t
 " Add window transparency
-set transparency=10
+if has('gui_running')
+  set transparency=10
+endif
 
 " Add menu Tab
 amenu <silent> T&abs.&New :confirm tabnew<cr>
