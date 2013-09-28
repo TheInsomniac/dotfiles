@@ -59,3 +59,5 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'elzr/vim-json'
 " Output text to named screen/tmux session (perfect for REPL)
 Bundle 'jpalardy/vim-slime'
+" Quoting/parenthesizing made simple
+Bundle 'tpope/vim-surround'
