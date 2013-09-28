@@ -10,7 +10,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bashrc_osx aliases git-completion.bash git-prompt.bash vimrc \
     vim nanorc hushlogin inputrc osx_defaults pythonstartup.py muttrc mutt \
-    ipython screenrc tmux.conf tmux, jshintrc, dircolors.ansi-light"    # list of files/folders to symlink in homedir
+    ipython screenrc tmux.conf tmux jshintrc dircolors.ansi-light"    # list of files/folders to symlink in homedir
 
 ##########
 
