@@ -1,6 +1,10 @@
 " Rebind <Leader> key
 let mapleader = ";"
 
+" Map CTRL-W to toggle wrapping
+nnoremap <silent> <C-w> :set wrap!<CR>
+inoremap <silent> <C-w> :set wrap!<CR>
+
 " Map CTRL-S to save buffer
 nnoremap <silent> <C-s> :w<CR>
 inoremap <silent> <C-s> :w<CR>

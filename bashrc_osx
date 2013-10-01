@@ -71,11 +71,12 @@ tab-reset() {
 color-ssh() {
     if [[ -n "$ITERM_SESSION_ID" ]]; then
         trap "tab-reset" INT EXIT
-        #if [[ "$*" =~ "production|ec2-.*compute-1" ]]; then
-        #    tab-color 255 0 0
-        #else
-        tab-color 170 0 255 
-        #fi
+        if [[ "$*" =~ "FileServer" ]]; then
+            #tab-color 170 0 255
+            tab-color 204 171 216
+        else
+          tab-color 187 217 109 
+        fi
     fi
     ssh $*
     # Reset tab color on exit SSH session
