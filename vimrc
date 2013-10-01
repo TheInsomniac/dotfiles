@@ -75,6 +75,8 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=233
 " Don't wrap lines
 set nowrap
+" When using wrap (CTRL-W or :set wrap!). Wrap at word boundaries
+set linebreak 
 " highlight characters past column 78
 autocmd FileType * highlight Excess ctermbg=237 guibg=#3a3a3a
 autocmd FileType * match Excess /\%78v.*/
