@@ -12,14 +12,14 @@ inoremap <silent> <C-s> :w<CR>
 nnoremap <silent> <C-q> :q<CR>
 inoremap <silent> <C-q> :q<CR>
 
-" Clear Search Highlight on _
-nnoremap <silent> _ :nohl<CR>
-
 vnoremap < <gv " better indentation
 vnoremap > >gv " same as above
 
 " Allow writing file as root user using W instead of w
 command! W w !sudo tee % > /dev/null
+
+" Clear Search Highlight on _
+nnoremap <silent> _ :nohl<CR>
 
 " Toggle auto-indent before clipboard paste
 set pastetoggle=<leader>p

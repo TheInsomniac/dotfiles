@@ -71,7 +71,7 @@ tab-reset() {
 color-ssh() {
     if [[ -n "$ITERM_SESSION_ID" ]]; then
         trap "tab-reset" INT EXIT
-        if [[ "$*" =~ "FileServer" ]]; then
+        if [[ "$*" =~ "101" ]]; then
             #tab-color 170 0 255
             tab-color 204 171 216
         else

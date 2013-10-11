@@ -70,3 +70,6 @@ alias gita='git add'
 alias gitg='open -a GitHub.app'
 alias giti='git init'
 alias lls='ls -alh'
+
+# Send id_rsa for ssh-copy-ip
+alias ssh-copy-id='ssh-copy-id -i ~/.ssh/id_rsa.pub'

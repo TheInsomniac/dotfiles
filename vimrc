@@ -55,6 +55,7 @@ set wildignore+=*.pyc
 
 " Highlight Search Results
 set hlsearch
+
 " Incremental Search
 set incsearch
 " Wrap Search
@@ -80,6 +81,16 @@ set linebreak
 " highlight characters past column 78
 autocmd FileType * highlight Excess ctermbg=237 guibg=#3a3a3a
 autocmd FileType * match Excess /\%78v.*/
+
+" Visual Block Move Mode
+runtime plugin/dragvisuals.vim
+vmap  <expr>  <S-LEFT>   DVB_Drag('left')
+vmap  <expr>  <S-RIGHT>  DVB_Drag('right')
+vmap  <expr>  <S-DOWN>   DVB_Drag('down')
+vmap  <expr>  <S-UP>     DVB_Drag('up')
+
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1 
 
 " Disable folding
 set fo-=t
