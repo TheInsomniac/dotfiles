@@ -1,10 +1,11 @@
 export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20
 
 # Setting PATH for Python 2.7
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-PATH="/usr/local/sbin:${PATH}"
-PATH="~/Library/Python/2.7/bin:${PATH}"
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+#PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+#PATH="/usr/local/sbin:${PATH}"
+#PATH="~/Library/Python/2.7/bin:${PATH}"
+#export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+export PYTHONPATH=/Users/mark/Library/Python/2.7/lib/python/site-packages:$PYTHONPATH
 
 # Deleted files with go to Trash instead of being deleted immediately.
 function rm () {
