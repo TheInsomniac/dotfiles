@@ -49,6 +49,11 @@ fi
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 
+# Enable Less' syntax highlighting on Linux
+if [ -d /usr/share/source-highlight ]; then
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+    export LESS=' -R '
+fi
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -56,7 +61,6 @@ HISTCONTROL=ignoredups:ignorespace
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
-
 
 # disable XON/XOFF in terminal to allow C-s forward bash search
 stty -ixon
@@ -142,11 +146,14 @@ if [ -f $HOME/.git-completion.bash ]; then
     . $HOME/.git-completion.bash
 fi
 
-# enable autojump if installed
+# enable autojump if installed for OSX
 if [ -f /usr/local/etc/autojump.sh ]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 fi
-
+# enable autojump if installed for Linux 
+if [ -f /usr/local/bin/autojump ]; then
+    [[ -s /etc/profile.d/autojump.bash ]] && . /etc/profile.d/autojump.bash
+fi
 #set CDPATH for easy cd'ing
 #export CDPATH=".:~:/Applications"
 
@@ -179,7 +186,7 @@ function imgsize() {
                 height=$(sips -g pixelHeight "$1"|tail -n 1|awk '{print $2}')
                 width=$(sips -g pixelWidth "$1"|tail -n 1|awk '{print $2}')
                 echo "W: ${width} x H:${height}"
-                echo '<img href="$1" width="$width" height="$height">'
+                echo "<img href=${1} width=${width} height=${height}>"
         else
                 echo "File not found"
         fi

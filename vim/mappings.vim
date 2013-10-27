@@ -65,6 +65,7 @@ map <leader># :s/^/#/<CR>
 map <leader>-# :s/#//<CR>
 " ;/ C/C++/C#/Java // comments
 map <leader>/ :s/^/\/\//<CR>
+map <leader>-/ :s/\/\///<CR>
 " ;< HTML comment
 map <leader>< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
 " c++ java style comments

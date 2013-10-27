@@ -7,6 +7,11 @@ export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20
 #export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export PYTHONPATH=/Users/mark/Library/Python/2.7/lib/python/site-packages:$PYTHONPATH
 
+#Colorized less using pygmentize
+export LESS='-R -F -X'
+#export LESSOPEN='|pygmentize -g %s'
+#export LESS='-F -X'
+
 # Deleted files with go to Trash instead of being deleted immediately.
 function rm () {
   local path

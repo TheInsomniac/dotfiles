@@ -4,14 +4,13 @@ alias mvr='rsync -aP --no-whole-file --inplace --remove-source-files'
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias lsregister=/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
-  alias mvim='mvim > /dev/null 2>&1'
   alias qv='qlmanage -p "$@" > /dev/null 2>&1'
   alias qtconsole='ipython qtconsole --colors=linux'
   alias finder='open -R'
   # Clean up LaunchServices to remove duplicates in the “Open With” menu
   alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
   alias nw="open -n -a node-webkit"
-  alias mvim='/usr/local/bin/mvim --remote-tab-silent'  
+  alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'  
   alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
 fi
 
@@ -60,6 +59,9 @@ alias compressjs="yuicompressor -o '.js$:-min.js' *.js"
 alias ccat='pygmentize -g'
 # show line numbers using grep
 alias grep='grep -n'
+# use Less instead of More
+alias more='less -F -X'
+#alias more='less'
 
 # Git aliases
 alias gits='git status'
