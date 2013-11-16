@@ -62,6 +62,30 @@ function thumb() {
     rm $rsrc $image
 }
 
+# List files with specified Finder tags in current directory
+# Works with partial words starting from the beginning of the word
+lst() {
+	# if the first argument is "AND" (case insensitive),
+	# a boolean AND search will be used. Defaults to OR.
+	bool="OR"
+	[[ $1 =~ "and" ]] && bool="AND" && shift
+ 
+	first=true
+	for tag in $@; do
+		if $first; then
+			query="tag:$tag"
+			first=false
+		else
+			query="$query $bool tag:$tag"
+		fi
+	done
+ 
+	results=$(mdfind -onlyin . "$query")
+	for line in $results; do
+		echo ${line#`pwd`/} # make result paths relative to pwd
+	done
+}
+
 #iTerm Tab Colors
 tab-color() {
     echo -ne "\033]6;1;bg;red;brightness;$1\a"

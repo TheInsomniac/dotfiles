@@ -119,6 +119,8 @@ function! s:emmet_html_tab()
     endif
     return "\<C-y>,"
 endfunction
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
 
 "Closetags
