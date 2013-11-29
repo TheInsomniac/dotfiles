@@ -51,6 +51,7 @@ fi
 #Copy quicklook files if OS is MAC OSX
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     ln -s $dir/QuickLook ~/Library/QuickLook
+fi
 
 # Copy virtualenvwrapper postactivate script if virtualenvwrapper installed
 if [[ -n "$WORKON_HOME" ]]; then
