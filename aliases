@@ -11,7 +11,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
   alias nw="open -n -a node-webkit"
   alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'  
-  alias ke="/Applications/Komodo\ Edit\ 8.app/Contents/MacOS/komodo-bin"
+  alias serve="/usr/local/bin/takeapeek -p 8888"
 fi
 
 # enable dmesg with human readable timestamp on linux systems
@@ -51,9 +51,9 @@ alias super="sudo supervisorctl -c /usr/local/share/supervisor/supervisord.conf"
 
 #HTML / CSS / JS Tools
 # Compress .css and output -min.css
-alias compresscss="yuicompressor -o '.css$:-min.css' *.css"
+alias compresscss="yuicompressor -o '.css$:.min.css' *.css"
 # Compress .js and output -min.js
-alias compressjs="yuicompressor -o '.js$:-min.js' *.js"
+alias compressjs="yuicompressor -o '.js$:.min.js' *.js"
 
 # Syntax Highlighted Cat command
 alias ccat='pygmentize -g'

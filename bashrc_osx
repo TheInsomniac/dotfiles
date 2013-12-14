@@ -112,5 +112,18 @@ color-ssh() {
     # Reset tab color on exit SSH session
     tab-reset
 }
+
+# Quickly get image dimensions from the command line
+function imgsize() {
+        local width height
+        if [[ -f $1 ]]; then
+                height=$(sips -g pixelHeight "$1"|tail -n 1|awk '{print $2}')
+                width=$(sips -g pixelWidth "$1"|tail -n 1|awk '{print $2}')
+                echo "W: ${width} x H:${height}"
+                echo "<img href=${1} width=${width} height=${height}>"
+        else
+                echo "File not found"
+        fi
+}
  
 alias ssh=color-ssh

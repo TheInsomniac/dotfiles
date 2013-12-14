@@ -38,7 +38,7 @@ Bundle 'eiginn/netrw'
 " Coffeescript highlighting
 Bundle 'kchmck/vim-coffee-script'
 " Run a terminal within Vim
-Bundle 'vim-scripts/Conque-Shell'
+" Bundle 'vim-scripts/Conque-Shell'
 " Javascript completion
 Bundle 'marijnh/tern_for_vim'
 " Show indent guides
@@ -61,3 +61,5 @@ Bundle 'elzr/vim-json'
 Bundle 'jpalardy/vim-slime'
 " Quoting/parenthesizing made simple
 Bundle 'tpope/vim-surround'
+" Automatic colon/semicolon insertion
+Bundle 'lfilho/cosco.vim'

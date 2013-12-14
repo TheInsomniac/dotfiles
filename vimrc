@@ -116,6 +116,9 @@ set backspace=indent,eol,start
 
 " Do not return to start of line when traversing line
 set nostartofline
+" Allow left right cursor to return to previous line from start of next
+set whichwrap+=<,>,h,l,[,]
+
 
 " Show column numbers
 set number

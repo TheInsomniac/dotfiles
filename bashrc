@@ -179,18 +179,6 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     }
     alias cd="virtualenv_cd"
 fi
-# Quickly get image dimensions from the command line
-function imgsize() {
-        local width height
-        if [[ -f $1 ]]; then
-                height=$(sips -g pixelHeight "$1"|tail -n 1|awk '{print $2}')
-                width=$(sips -g pixelWidth "$1"|tail -n 1|awk '{print $2}')
-                echo "W: ${width} x H:${height}"
-                echo "<img href=${1} width=${width} height=${height}>"
-        else
-                echo "File not found"
-        fi
-}
 
 # encode a given image file as base64 and output css background property to clipboard
 function 64enc() {
@@ -257,3 +245,7 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+# Android SDK
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export JAVA_HOME=$(/usr/libexec/java_home)
