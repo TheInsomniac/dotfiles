@@ -86,6 +86,12 @@ lst() {
 	done
 }
 
+# encode a given image file as base64 and output css background property to clipboard
+function 64enc() {
+        openssl base64 -in $1 | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "background:url(data:image/"ext";base64,"str1");" }'|pbcopy
+        echo "$1 encoded to clipboard"
+}
+
 #iTerm Tab Colors
 tab-color() {
     echo -ne "\033]6;1;bg;red;brightness;$1\a"
@@ -127,3 +133,7 @@ function imgsize() {
 }
  
 alias ssh=color-ssh
+
+# Android SDK
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export JAVA_HOME=$(/usr/libexec/java_home)

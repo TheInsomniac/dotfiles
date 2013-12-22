@@ -14,7 +14,7 @@ inoremap <silent> <C-q> :q<CR>
 
 vnoremap < <gv " better indentation
 vnoremap > >gv " same as above
-
+ 
 " Allow writing file as root user using W instead of w
 command! W w !sudo tee % > /dev/null
 

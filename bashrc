@@ -132,7 +132,7 @@ function add-alias() {
 }
 
 # batch change extension (chgext FROM TO)
- chgext() {
+chgext() {
    for file in *.$1 ; do mv "$file" "${file%.$1}.$2" ; done
 }
 
@@ -179,12 +179,6 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     }
     alias cd="virtualenv_cd"
 fi
-
-# encode a given image file as base64 and output css background property to clipboard
-function 64enc() {
-        openssl base64 -in $1 | awk -v ext="${1#*.}" '{ str1=str1 $0 }END{ print "background:url(data:image/"ext";base64,"str1");" }'|pbcopy
-        echo "$1 encoded to clipboard"
-}
 
 #make directory and then cd into it
 function md() {
@@ -246,6 +240,3 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 
-# Android SDK
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export JAVA_HOME=$(/usr/libexec/java_home)
