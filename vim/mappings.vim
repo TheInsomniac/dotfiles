@@ -58,18 +58,23 @@ nnoremap Y y$
 
 " Auto comment blocks of text
 " ;" vim " comments
-map <leader>" :s/^/"/<CR>
-map <leader>-" :s/"//<CR>
+"map <leader>" :s/^/"/<CR>
+"map <leader>-" :s/"//<CR>
 " ;# python # comments
-map <leader># :s/^/#/<CR>
-map <leader>-# :s/#//<CR>
+"map <leader># :s/^/#/<CR>
+"map <leader>-# :s/#//<CR>
 " ;/ C/C++/C#/Java // comments
-map <leader>/ :s/^/\/\//<CR>
-map <leader>-/ :s/\/\///<CR>
+"map <leader>/ :s/^/\/\//<CR>
+"map <leader>-/ :s/^\/\///<CR>
 " ;< HTML comment
-map <leader>< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
+"map <leader>< :s/^\(.*\)$/<!-- \1 -->/<CR><Esc>:nohlsearch<CR>
 " c++ java style comments
-map <leader>* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
+"map <leader>* :s/^\(.*\)$/\/\* \1 \*\//<CR><Esc>:nohlsearch<CR>
+
+" Comment using tComment
+nnoremap <leader># :TComment<CR>
+inoremap <leader># :TComment<CR>
+vnoremap <leader># :TCommentBlock<CR>
 
 " Easy filetype switching
 nnoremap _md :set ft=markdown<CR>

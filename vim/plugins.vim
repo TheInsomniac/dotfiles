@@ -110,7 +110,7 @@ endif
 " Emmet Completion
 " let <leader>e complet emmet snippets in case the below doesn't work
 " for some really nested tags
-imap <leader>e <C-y>,
+imap <C-e> <C-y>,
 " Enable tab to complete emmet snippets
 function! s:emmet_html_tab()
     let line = getline('.')
@@ -121,7 +121,7 @@ function! s:emmet_html_tab()
 endfunction
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
+" autocmd FileType html imap <buffer><expr><tab> <sid>emmet_html_tab()
 
 "Closetags
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
@@ -172,5 +172,5 @@ let g:slime_target = "screen"
 let g:slime_paste_file = tempname()
 
 " Cosco semicolon/comma
-autocmd FileType javascript,css,YOUR_LANG nmap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
-autocmd FileType javascript,css,YOUR_LANG inoremap <silent> <leader>, <ESC>:call cosco#commaOrSemiColon()"<CR>a
+autocmd FileType javascript,css,html nmap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css,html inoremap <silent> <leader>, <ESC>:call cosco#commaOrSemiColon()"<CR>a

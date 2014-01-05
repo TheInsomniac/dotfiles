@@ -63,3 +63,5 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'tpope/vim-surround'
 " Automatic colon/semicolon insertion
 Bundle 'lfilho/cosco.vim'
+" Source code commenting
+Bundle 'tomtom/tcomment_vim'
