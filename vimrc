@@ -44,6 +44,14 @@ set t_Co=256
 set title
 " Visual Bel
 set vb
+" Don't redraw if we don't have to
+set lazyredraw
+" We have a fast tty such as xterm
+set ttyfast
+" keep at least 5 lines above/below
+set scrolloff=5
+" keep at least 5 lines left/right
+set sidescrolloff=5
 
 " Enable Wildmenu completion "
 set wildmenu
