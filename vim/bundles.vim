@@ -50,6 +50,7 @@ Bundle 'SirVer/ultisnips'
 " Display git status in gutter
 Bundle 'mhinz/vim-signify'
 " Match parentheses in specific colors
+"Bundle 'luochen1990/rainbow'
 Bundle 'kien/rainbow_parentheses.vim'
 " Node.JS support
 Bundle 'moll/vim-node'

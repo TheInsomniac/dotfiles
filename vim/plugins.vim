@@ -1,8 +1,11 @@
 "Rainbow Parentheses
+" // Old Rainbow from Kien //
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
+" // New Rainbow. Don't like?? //
+let g:rainbow_active = 1
 
 " Disable delimiteMate for vimrc
 autocmd FileType vim let b:delimitMate_autoclose = 0 
@@ -174,3 +177,31 @@ let g:slime_paste_file = tempname()
 " Cosco semicolon/comma
 autocmd FileType javascript,css,html nmap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,html inoremap <silent> <leader>, <ESC>:call cosco#commaOrSemiColon()"<CR>a
+
+" YUI Compress JS/CSS
+function Js_css_compress ()
+  let cwd = expand('<afile>:p:h')
+  let nam = expand('<afile>:t:r')
+  let ext = expand('<afile>:e')
+  if -1 == match(nam, "[\._]src$")
+    let minfname = nam.".min.".ext
+  else
+    let minfname = substitute(nam, "[\._]src$", "", "g").".".ext
+  endif
+  if ext == 'less'
+    if executable('lessc')
+      cal system( 'lessc '.cwd.'/'.nam.'.'.ext.' &')
+    endif
+  else
+    if filewritable(cwd.'/'.minfname)
+      "if ext == 'js' && executable('closure-compiler')
+      "  cal system( 'closure-compiler --js '.cwd.'/'.nam.'.'.ext.' > '.cwd.'/'.minfname.' &')
+      "elseif executable('yuicompressor')
+        cal system( 'yuicompressor '.cwd.'/'.nam.'.'.ext.' > '.cwd.'/'.minfname.' &')
+      "endif
+    endif
+  endif
+endfunction
+autocmd FileWritePost,BufWritePost *.js :call Js_css_compress()
+autocmd FileWritePost,BufWritePost *.css :call Js_css_compress()
+"autocmd FileWritePost,BufWritePost *.less :call Js_css_compress()
