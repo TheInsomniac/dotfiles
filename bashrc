@@ -22,7 +22,17 @@ MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
+## Simple git branch prompt if not using git-prompt.bash
+#function parse_git_branch { 
+#   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/' 
+#}
+#PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(parse_git_branch)\[$RESET\]→ '
+
+## More complex git branch prompt including dirty/clean state. Uses git-prompt.bash
 PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
+
+## Display size of terminal window in iTerm2 if on my laptop. 
+## Useful when I want to ensure my terminal is 80x24 for proper code layout.
 if [[ "$HOSTNAME" = "lappy" ]]; then 
   PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
 else
