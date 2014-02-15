@@ -24,6 +24,9 @@ autocmd! bufwritepost .vimrc source %
 
 " automatically change window's cwd to file's dir
 set autochdir
+" Open files relative to the path of the current file in not using above
+" cnoremap %% <c-r>=expand('%:h').'/'<cr>
+
 
 " Disable backup and swap files
 set nobackup
@@ -51,7 +54,9 @@ set ttyfast
 " keep at least 5 lines above/below
 set scrolloff=5
 " keep at least 5 lines left/right
-set sidescrolloff=5
+set sidescrolloff=10
+" Allow for cursor beyond last character
+set virtualedit=onemore
 
 " Enable Wildmenu completion "
 set wildmenu
@@ -76,6 +81,10 @@ set showmatch
 
 " Enable Mouse support in terimal
 set mouse=a
+" Make cursor keys work in non-GUI mode
+if !has('gui')
+  set term=$TERM
+endif
 
 " set columns=80
 set tw=80
@@ -86,9 +95,9 @@ highlight ColorColumn ctermbg=233
 set nowrap
 " When using wrap (CTRL-W or :set wrap!). Wrap at word boundaries
 set linebreak 
-" highlight characters past column 78
+" highlight characters past column 80
 autocmd FileType * highlight Excess ctermbg=237 guibg=#3a3a3a
-autocmd FileType * match Excess /\%78v.*/
+autocmd FileType * match Excess /\%80v.*/
 
 " Visual Block Move Mode
 runtime plugin/dragvisuals.vim
@@ -108,6 +117,7 @@ set background=dark
 "let g:solarized_termtrans=1
 "colorscheme solarized
 colorscheme molokai
+"colorscheme iceberg
 let g:rehash256=1
 "let g:molokai_original=1
 set guifont=Inconsolata\ for\ Powerline:h18
@@ -119,6 +129,8 @@ set ruler
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+" Re-indent, remove trailing whitespace & convert tabs to spaces.
+" noremap <leader>t :execute "normal gg=G"<bar>execute "normal ''"<bar>%s/\s\+$//e<bar>retab<cr>
 " Make backspace honour the spaces 
 set backspace=indent,eol,start 
 
@@ -175,7 +187,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 "augroup END
 "endif
 
- " GUI Options {
+" GUI Options {
 
 " Set GUI Options and scrollbars
 set guioptions=eg
@@ -192,12 +204,9 @@ amenu <silent> T&abs.&Previous :tabprevious<cr>
 amenu <silent> T&abs.Ne&xt :tabnext<cr>
 amenu <silent> T&abs.&Delete :confirm tabclose<cr>
 
- " }
+" }
 
- " External Configuration Files {
-
-" load bundles from bundles.vim
-"source $HOME/.vim/bundles.vim
+" External Configuration Files {
 
 " load key mappings from mappings.vim
 source $HOME/.vim/mappings.vim
@@ -205,4 +214,4 @@ source $HOME/.vim/mappings.vim
 " load plugin settings from plugins.vim
 source $HOME/.vim/plugins.vim
 
- " }
+" }

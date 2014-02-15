@@ -5,10 +5,10 @@ autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 " // New Rainbow. Don't like?? //
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " Disable delimiteMate for vimrc
-autocmd FileType vim let b:delimitMate_autoclose = 0 
+"autocmd FileType vim let b:delimitMate_autoclose = 0 
     
 " Vim Airline statusline
 let g:airline_powerline_fonts = 1
@@ -143,6 +143,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=235
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3a3a3a ctermbg=237
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+"IndentLine
+"let g:indentLine_char = '▸'
+"let g:indentLine_color_term = 234
+"let g:indentLine_color_gui = '#262626'
 
 "UltiSnip
 let g:UltiSnipsExpandTrigger = '<c-j>'

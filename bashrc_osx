@@ -4,8 +4,8 @@ export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20
 #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 #PATH="/usr/local/sbin:${PATH}"
 #PATH="~/Library/Python/2.7/bin:${PATH}"
-#export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-export PYTHONPATH=/Users/mark/Library/Python/2.7/lib/python/site-packages:$PYTHONPATH
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+#export PYTHONPATH=/Users/mark/Library/Python/2.7/lib/python/site-packages:$PYTHONPATH
 
 #Colorized less using pygmentize
 export LESS='-R -F -X'
@@ -64,7 +64,7 @@ function thumb() {
 
 # List files with specified Finder tags in current directory
 # Works with partial words starting from the beginning of the word
-lst() {
+function lst() {
 	# if the first argument is "AND" (case insensitive),
 	# a boolean AND search will be used. Defaults to OR.
 	bool="OR"

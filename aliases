@@ -75,3 +75,11 @@ alias lls='ls -alh'
 
 # Send id_rsa for ssh-copy-ip
 alias ssh-copy-id='ssh-copy-id -i ~/.ssh/id_rsa.pub'
+
+#Can't fix stupid!
+alias :q="echo 'Try running ViM before exiting...'"
+
+alias nodemon="nodemon -e ejs,jade,js"
+
+#Easier dates
+alias now="date +'%m-%d-%Y_%I:%M'"
