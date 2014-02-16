@@ -33,16 +33,10 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-#Sublime Text 2 and 3
+# Copy shell scripts
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-    mkdir ~/Application\ Support/Sublime\ Text\ 2\
-    ln -s $dir/Sublime\ Text\ 2\Packages ~/Application\ Support/Sublime\ Text\ 2\Packages
-    mkdir ~/Application\ Support/Sublime\ Text\ 3\
-    ln -s $dir/Sublime\ Text\ 3\Packages ~/Application\ Support/Sublime\ Text\ 3\Packages
-    ln -s $dir/Sublime\ Text\ 3\Installed\ Packages ~/Application\ Support/Sublime\ Text\ 3\Installed\ Packages
+  cp -Rp $dir/scripts /usr/local/bin
 fi
-
-
 
 # Copy geektool script only if OS is MAC OSX
 if [[ "$OSTYPE" =~ ^darwin ]]; then
@@ -52,6 +46,7 @@ fi
 #Copy quicklook files if OS is MAC OSX
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     ln -s $dir/QuickLook ~/Library/QuickLook
+    /usr/bin/qlmanage -r
 fi
 
 # Copy virtualenvwrapper postactivate script if virtualenvwrapper installed
@@ -60,7 +55,7 @@ if [[ -n "$WORKON_HOME" ]]; then
     ln -s $dir/postactivate $WORKON_HOME/postactivate
 fi
 
-#function install_zsh {
+  #function install_zsh {
 # Test to see if zshell is installed.  If it is:
 #if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
 #    # Clone my oh-my-zsh repository from GitHub only if it isn't already present

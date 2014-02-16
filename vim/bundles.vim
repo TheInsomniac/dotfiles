@@ -30,7 +30,7 @@ Bundle 'bling/vim-airline'
 " Git Support
 Bundle 'tpope/vim-fugitive'
 " HTML & CSS Live Preview
-Bundle 'TheInsomniac/brolink.vim'
+" Bundle 'TheInsomniac/brolink.vim'
 " Updated netrw (Vim's native filemanager)
 Bundle 'eiginn/netrw'
 " jQuery syntax highlighting
@@ -67,3 +67,5 @@ Bundle 'tpope/vim-surround'
 Bundle 'lfilho/cosco.vim'
 " Source code commenting
 Bundle 'tomtom/tcomment_vim'
+" CSS Color Highlighting
+"Bundle 'colorizer'
