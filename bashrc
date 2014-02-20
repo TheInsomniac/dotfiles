@@ -13,12 +13,13 @@ fi
 # Set default editor to vi for programs such as cron
 EDITOR=$(which vi)
 
-#RED=$(tput setaf 1)
-#GREEN=$(tput setaf 2)
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
 BLUE=$(tput setaf 4)
 MAGENTA=$(tput setaf 5)
-#YELLOW=$(tput setaf 3)
-#WHITE=$(tput setaf 7)
+YELLOW=$(tput setaf 3)
+WHITE=$(tput setaf 7)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
@@ -29,7 +30,8 @@ RESET=$(tput sgr0)
 #PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(parse_git_branch)\[$RESET\]→ '
 
 ## More complex git branch prompt including dirty/clean state. Uses git-prompt.bash
-PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
+#PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
+PS1='\[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$CYAN\]❯\[$RESET\] '
 
 ## Display size of terminal window in iTerm2 if on my laptop. 
 ## Useful when I want to ensure my terminal is 80x24 for proper code layout.
