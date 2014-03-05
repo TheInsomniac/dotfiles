@@ -12,6 +12,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias nw="open -n -a node-webkit"
   alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'  
   alias serve="/usr/local/bin/takeapeek -p 8888"
+  alias brackets='open -a Brackets'
 fi
 
 # enable dmesg with human readable timestamp on linux systems

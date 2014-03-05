@@ -25,6 +25,8 @@ Bundle 'mattn/emmet-vim'
 Bundle 'digitaltoad/vim-jade'
 " Stylus (CSS) support
 Bundle 'wavded/vim-stylus'
+" LESS (CSS) support
+Bundle 'groenewege/vim-less'
 " Pretty Status Bars
 Bundle 'bling/vim-airline'
 " Git Support

@@ -23,9 +23,9 @@ set shm+=atmI
 autocmd! bufwritepost .vimrc source %
 
 " automatically change window's cwd to file's dir
-set autochdir
+" set autochdir
 " Open files relative to the path of the current file in not using above
-" cnoremap %% <c-r>=expand('%:h').'/'<cr>
+cnoremap %% <c-r>=expand('%:h').'/'<cr>
 
 
 " Disable backup and swap files
