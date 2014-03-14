@@ -2,6 +2,9 @@
 [ -z "$PS1" ] && return
 [[ $- != *i* ]] && return
 
+# Ensure /usr/local/bin is before /usr/bin
+export PATH=/usr/local/bin:$PATH
+
 #disable messages from other users
 mesg n
 
