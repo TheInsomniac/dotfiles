@@ -11,7 +11,7 @@ olddir=~/dotfiles_old             # old dotfiles backup directory
 files="bashrc bashrc_osx aliases git-completion.bash git-prompt.bash vimrc \
     vim nanorc hushlogin inputrc osx_defaults pythonstartup.py mutt \
     ipython screenrc tmux.conf jshintrc dircolors.ansi-light jshintrc \
-    jsbeautifyrc"    # list of files/folders to symlink in homedir
+    jsbeautifyrc editorconfig"    # list of files/folders to symlink in homedir
 
 ##########
 

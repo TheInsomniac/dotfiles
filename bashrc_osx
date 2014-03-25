@@ -137,3 +137,12 @@ alias ssh=color-ssh
 # Android SDK
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Simple TODO app which creates a file on the desktop with the name of the task to
+# perform
+todo () {
+  IFS_OLD="$IFS"
+  IFS=$'\n'
+  touch $(echo ~/Desktop/$@)
+  IFS="$IFS_OLD"
+}

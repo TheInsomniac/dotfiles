@@ -71,3 +71,5 @@ Bundle 'lfilho/cosco.vim'
 Bundle 'tomtom/tcomment_vim'
 " CSS Color Highlighting
 "Bundle 'colorizer'
+"CSS Comb
+Bundle 'miripiruni/CSScomb-for-Vim'
