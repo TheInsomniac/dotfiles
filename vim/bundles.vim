@@ -73,3 +73,5 @@ Bundle 'tomtom/tcomment_vim'
 "Bundle 'colorizer'
 "CSS Comb
 Bundle 'miripiruni/CSScomb-for-Vim'
+" EditorConfig
+Bundle 'editorconfig/editorconfig-vim'

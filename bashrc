@@ -27,8 +27,8 @@ CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
 ## Simple git branch prompt if not using git-prompt.bash
-#function parse_git_branch { 
-#   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/' 
+#function parse_git_branch {
+#   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 #}
 #PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(parse_git_branch)\[$RESET\]→ '
 
@@ -36,9 +36,9 @@ RESET=$(tput sgr0)
 #PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
 PS1='\[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$CYAN\]❯\[$RESET\] '
 
-## Display size of terminal window in iTerm2 if on my laptop. 
+## Display size of terminal window in iTerm2 if on my laptop.
 ## Useful when I want to ensure my terminal is 80x24 for proper code layout.
-if [[ "$HOSTNAME" = "lappy" ]]; then 
+if [[ "$HOSTNAME" = "lappy" ]]; then
   PROMPT_COMMAND='echo -ne "\033]0;[$LINES:$COLUMNS][${PWD/#$HOME/~}]\007"'
 else
   PROMPT_COMMAND='echo -ne "\033]0;[$HOSTNAME][${PWD/#$HOME/~}]\007"'
@@ -69,6 +69,12 @@ if [ -d /usr/share/source-highlight ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS=' -R '
 fi
+# Enable Less' syntax highlighting on OSX
+if [ -d /usr/local/share/source-highlight ]; then
+    export LESSOPEN="| /usr/local/share/source-highlight/src-hilite-lesspipe.sh %s"
+    export LESS=' -R '
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -171,7 +177,7 @@ fi
 if [ -f /usr/local/etc/autojump.sh ]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 fi
-# enable autojump if installed for Linux 
+# enable autojump if installed for Linux
 if [ -f /usr/local/bin/autojump ]; then
     [[ -s /etc/profile.d/autojump.bash ]] && . /etc/profile.d/autojump.bash
 fi
@@ -264,40 +270,41 @@ fi
 ### Create Github repo from command line
 github-create() {
   repo_name=$1
- 
+
   dir_name=`basename $(pwd)`
- 
+
   if [ "$repo_name" = "" ]; then
     echo "Repo name (hit enter to use '$dir_name')?"
     read repo_name
   fi
- 
+
   if [ "$repo_name" = "" ]; then
     repo_name=$dir_name
   fi
- 
+
   username=`git config github.user`
   if [ "$username" = "" ]; then
     echo "Could not find username, run 'git config --global github.user <username>'"
     invalid_credentials=1
   fi
- 
+
   token=`git config github.token`
   if [ "$token" = "" ]; then
     echo "Could not find token, run 'git config --global github.token <token>'"
     invalid_credentials=1
   fi
- 
+
   if [ "$invalid_credentials" == "1" ]; then
     return 1
   fi
- 
+
   echo -n "Creating Github repository '$repo_name' ..."
   curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
   echo " done."
- 
+
   echo -n "Pushing local code to remote ..."
   git remote add origin git@github.com:$username/$repo_name.git > /dev/null 2>&1
   git push -u origin master > /dev/null 2>&1
   echo " done."
 }
+

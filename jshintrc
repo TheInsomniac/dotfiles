@@ -12,5 +12,6 @@
   "trailing": true,
   "undef": true,
   "indent":2,
-  "unused": true
+  "unused": true,
+  "sub":true
 }
