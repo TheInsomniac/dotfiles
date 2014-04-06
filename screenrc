@@ -4,5 +4,8 @@ startup_message off
 # enable status line
 #hardstatus alwayslastline
 #hardstatus string "%{= g} %{= w}%-Lw%{=r}%n%f* %t%{-}%+LW"
-hardstatus alwayslastline "%{Bk}[ %{wk}%H %{Bk}] %-Lw%50>%{Bk}[ %{-}%{mk}%n-%t %{Bk}]%{-}%+Lw%< %=%{Bk}[%{ck} %c %d.%m.%Y %{Bk}]" 
+hardstatus alwayslastline "%{Bk}[ %{wk}%H %{Bk}] %-Lw%50>%{Bk}[ %{-}%{mk}%n-%t %{Bk}]%{-}%+Lw%< %=%{Bk}[%{ck} %c %d.%m.%Y %{Bk}]"
 
+#Enable mouse scrolling
+defscrollback 5000
+termcapinfo xterm* ti@:te@
