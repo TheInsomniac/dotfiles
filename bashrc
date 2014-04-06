@@ -282,7 +282,7 @@ github-create() {
     repo_name=$dir_name
   fi
 
-  username=`git config github.user`
+  username=`git config user.name`
   if [ "$username" = "" ]; then
     echo "Could not find username, run 'git config --global github.user <username>'"
     invalid_credentials=1
