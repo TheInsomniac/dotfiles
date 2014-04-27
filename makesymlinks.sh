@@ -47,6 +47,8 @@ fi
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     ln -s $dir/QuickLook ~/Library/QuickLook
     /usr/bin/qlmanage -r
+    # Enable select/copy/paste in quicklook
+    defaults write com.apple.finder QLEnableTextSelection -bool TRUE; killall Finder
 fi
 
 # Copy virtualenvwrapper postactivate script if virtualenvwrapper installed

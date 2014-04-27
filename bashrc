@@ -107,7 +107,7 @@ set -o vi
 
 #enable Python VirtualEnv
 if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
-    export WORKON_HOME=$HOME/Envs
+    export WORKON_HOME=$HOME/PyEnvs
     export PROJECT_HOME=$HOME/Projects
     source /usr/local/bin/virtualenvwrapper.sh
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
@@ -161,6 +161,11 @@ function chgext() {
 # Make backup of file (mkbak FILENAME)
 function mkbak() {
   for file in $1; do cp "$file" "$file".bak; done
+}
+
+# Copy origfile.ext to origfile.newext (mkcp FILENAME.EXT .NEWEXT)
+function mkcp() {
+  for file in $1; do cp "$file" "${file%%.*}$2"; done
 }
 
 if [ -f /usr/local/etc/bash_completion ]; then

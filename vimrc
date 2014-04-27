@@ -17,7 +17,7 @@ filetype plugin indent on
 set fileformats=unix,dos,mac
 
 " No startup messages
-set shm+=atmI 
+set shm+=atmI
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -94,7 +94,7 @@ highlight ColorColumn ctermbg=233
 " Don't wrap lines
 set nowrap
 " When using wrap (CTRL-W or :set wrap!). Wrap at word boundaries
-set linebreak 
+set linebreak
 " highlight characters past column 80
 autocmd FileType * highlight Excess ctermbg=237 guibg=#3a3a3a
 autocmd FileType * match Excess /\%80v.*/
@@ -107,7 +107,7 @@ vmap  <expr>  <S-DOWN>   DVB_Drag('down')
 vmap  <expr>  <S-UP>     DVB_Drag('up')
 
 " Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS = 1 
+let g:DVB_TrimWS = 1
 
 " Disable folding
 set fo-=t
@@ -131,8 +131,8 @@ set shiftwidth=2
 set softtabstop=2
 " Re-indent, remove trailing whitespace & convert tabs to spaces.
 " noremap <leader>t :execute "normal gg=G"<bar>execute "normal ''"<bar>%s/\s\+$//e<bar>retab<cr>
-" Make backspace honour the spaces 
-set backspace=indent,eol,start 
+" Make backspace honour the spaces
+set backspace=indent,eol,start
 
 " Do not return to start of line when traversing line
 set nostartofline
@@ -195,7 +195,8 @@ set guioptions=eg
 set guioptions-=t
 " Add window transparency
 if has('gui_running')
-  set transparency=10
+  set transparency=5
+  set lines=50 columns=141
 endif
 
 " Add menu Tab
