@@ -116,9 +116,17 @@ set background=dark
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 "colorscheme solarized
-colorscheme molokai
-"colorscheme iceberg
-let g:rehash256=1
+
+"colorscheme molokai
+
+if has("gui_running")
+  colorscheme base16-ocean-dark
+  let base16colorspace=256
+elseif &t_Co == 256
+  colorscheme iceberg
+endif
+
+"let g:rehash256=1
 "let g:molokai_original=1
 set guifont=Inconsolata\ for\ Powerline:h18
 

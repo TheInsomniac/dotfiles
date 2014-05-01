@@ -36,6 +36,11 @@ RESET=$(tput sgr0)
 #PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
 PS1='\[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$CYAN\]❯\[$RESET\] '
 
+#Add [hostname] to prompt when logged in via ssh:
+if [ -n "$SSH_CLIENT" ]; then
+  PS1="[\h] $PS1"
+fi
+
 ## Display size of terminal window in iTerm2 if on my laptop.
 ## Useful when I want to ensure my terminal is 80x24 for proper code layout.
 if [[ "$HOSTNAME" = "lappy" ]]; then
