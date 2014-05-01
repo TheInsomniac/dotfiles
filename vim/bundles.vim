@@ -19,8 +19,14 @@ Bundle 'Valloric/MatchTagAlways'
 Bundle 'mbadran/headlights'
 " Emmet html snippet support
 Bundle 'mattn/emmet-vim'
+"CSS Comb
+Bundle 'miripiruni/CSScomb-for-Vim'
 " Jade Templating Support
 Bundle 'digitaltoad/vim-jade'
+" Jinja2 Templating Support
+Bundle 'Glench/Vim-Jinja2-Syntax'
+""Mustache/Handlebars
+""Bundle 'mustache/vim-mustache-handlebars'
 " Stylus (CSS) support
 Bundle 'wavded/vim-stylus'
 " LESS (CSS) support
@@ -42,7 +48,6 @@ Bundle 'nathanaelkane/vim-indent-guides'
 " Display git status in gutter
 Bundle 'mhinz/vim-signify'
 " Match parentheses in specific colors
-"Bundle 'luochen1990/rainbow'
 Bundle 'kien/rainbow_parentheses.vim'
 " Node.JS support
 Bundle 'moll/vim-node'
@@ -56,9 +61,5 @@ Bundle 'tpope/vim-surround'
 Bundle 'lfilho/cosco.vim'
 " Source code commenting
 Bundle 'tomtom/tcomment_vim'
-" CSS Color Highlighting
-"Bundle 'colorizer'
-"CSS Comb
-Bundle 'miripiruni/CSScomb-for-Vim'
 " EditorConfig
 Bundle 'editorconfig/editorconfig-vim'

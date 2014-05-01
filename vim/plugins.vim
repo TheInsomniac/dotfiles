@@ -4,12 +4,10 @@ autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
-" // New Rainbow. Don't like?? //
-" let g:rainbow_active = 1
 
 " Disable delimiteMate for vimrc
-"autocmd FileType vim let b:delimitMate_autoclose = 0 
-    
+"autocmd FileType vim let b:delimitMate_autoclose = 0
+
 " Vim Airline statusline
 let g:airline_powerline_fonts = 1
 let g:airline_detect_paste = 1
@@ -55,26 +53,27 @@ function! ToggleVExplorer()
   endif
 endfunction
 map <silent> <leader>n :call ToggleVExplorer()<CR>
-let g:netrw_browse_split = 3
-let g:netrw_altv          = 1
-let g:netrw_fastbrowse    = 2
-let g:netrw_keepdir       = 0
-let g:netrw_liststyle     = 1
-let g:netrw_retmap        = 1
-let g:netrw_silent        = 1
-let g:netrw_special_syntax= 1
+let g:netrw_winsize        = 30
+let g:netrw_browse_split   = 3
+let g:netrw_altv           = 1
+let g:netrw_fastbrowse     = 2
+let g:netrw_keepdir        = 0
+let g:netrw_liststyle      = 1
+let g:netrw_retmap         = 1
+let g:netrw_silent         = 1
+let g:netrw_special_syntax = 1
 
 " Tabularize
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
-nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+nmap <leader>t= :Tabularize /=<CR>
+vmap <leader>t= :Tabularize /=<CR>
+nmap <leader>t: :Tabularize /:<CR>
+vmap <leader>t: :Tabularize /:<CR>
+nmap <leader>t:: :Tabularize /:\zs<CR>
+vmap <leader>t:: :Tabularize /:\zs<CR>
+nmap <leader>t, :Tabularize /,<CR>
+vmap <leader>t, :Tabularize /,<CR>
+nmap <leader>t<Bar> :Tabularize /<Bar><CR>
+vmap <leader>t<Bar> :Tabularize /<Bar><CR>
 
 " Markdown
 "vmap startmd :StartMarkdownServer
@@ -86,7 +85,7 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>:redraw!<cr>
 let g:syntastic_check_on_open = 1
  " Put errors on left side
 let g:syntastic_enable_signs = 1
-" Only open location list when asked 
+" Only open location list when asked
 let g:syntastic_auto_loc_list = 2
 " Popup on mouse hover
 let g:syntastic_enable_balloons = 1
@@ -111,7 +110,7 @@ else
 endif
 
 " Emmet Completion
-" let <leader>e complet emmet snippets in case the below doesn't work
+" let <ctrl>e complete emmet snippets in case the below doesn't work
 " for some really nested tags
 imap <C-e> <C-y>,
 " Enable tab to complete emmet snippets
@@ -156,7 +155,7 @@ let g:UltiSnipsListSnippets = '<c-l>'
 "let g:UltiSnipsSnippetDirectories = ['.snippets', 'snippets']
 
 " Signify
-let g:signify_vcs_list = [ 'git', 'hg' ] 
+let g:signify_vcs_list = [ 'git', 'hg' ]
 let g:signify_sign_overwrite = 0
 highlight link SignifySignAdd    DiffAdd
 highlight link SignifySignChange DiffChange

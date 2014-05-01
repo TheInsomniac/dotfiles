@@ -14,7 +14,7 @@ inoremap <silent> <C-q> :q<CR>
 
 vnoremap < <gv " better indentation
 vnoremap > >gv " same as above
- 
+
 " Allow writing file as root user using W instead of w
 command! W w !sudo tee % > /dev/null
 
@@ -96,8 +96,8 @@ inoremap { {}<left>
 " Angle-brackets are more likely to appear individually than other brace
 " types (as less-than & greater-than) so don't auto-close them by default.
 " But do provide leader combos for creating tags (standard & self-closing).
-inoremap <leader><lt> <lt>><lt>/><left><left><left><left>
-inoremap <leader>> <lt>><left>
+"inoremap <leader><lt> <lt>><lt>/><left><left><left><left>
+"inoremap <leader>> <lt>><left>
 
 " Gracefully handle over-writing of auto-closed pairs.
 inoremap <expr> ) ClosePair(')')
@@ -177,7 +177,7 @@ func! CloseQuote(char)
         " Opening a pair, auto-close it.
         return a:char.a:char."\<left>"
     endif
-endf 
+endf
 
 func! IsAlpha(c)
     let n = char2nr(a:c)
