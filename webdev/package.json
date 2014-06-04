@@ -1,0 +1,22 @@
+{
+  "name": "Development",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-less": "*",
+    "gulp-livereload": "*",
+    "gulp-rename": "*",
+    "tiny-lr": "*",
+    "ecstatic": "*",
+    "gulp-compass": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

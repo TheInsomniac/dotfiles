@@ -10,8 +10,9 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   # Clean up LaunchServices to remove duplicates in the “Open With” menu
   alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
   alias nw="open -n -a node-webkit"
-  alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'  
-  alias serve="/usr/local/bin/takeapeek -p 8888"
+  alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'
+  alias serve="python -m SimpleHTTPServer 8888"
+  # alias serve="/usr/local/bin/takeapeek -p 8888"
   alias brackets='open -a Brackets'
 fi
 
@@ -53,8 +54,9 @@ alias super="sudo supervisorctl -c /usr/local/share/supervisor/supervisord.conf"
 #HTML / CSS / JS Tools
 # Compress .css and output -min.css
 alias compresscss="yuicompressor -o '.css$:.min.css' *.css"
-# Compress .js and output -min.js
-alias compressjs="yuicompressor -o '.js$:.min.js' *.js"
+# Compress .js using uglify compress with arguments. Output with -o
+# filename.min.js
+alias compressjs="uglifyjs $1 --screw-ie8 -m -c sequences=true,dead_code=true,conditionals=true,booleans=true,unused=true,if_return=true,join_vars=true,drop_console=true"
 
 # Syntax Highlighted Cat command
 alias ccat='pygmentize -g'
@@ -67,11 +69,13 @@ alias more='less -F -X'
 # Git aliases
 alias gits='git status'
 alias gitc='git commit -a -m'
-alias gitp='git push'
+alias gitp='git push origin master'
 alias gitd='git diff'
 alias gita='git add'
 alias gitg='open -a GitHub.app'
 alias giti='git init'
+alias gitt='git tag -a -m'
+
 alias lls='ls -alh'
 
 # Send id_rsa for ssh-copy-ip

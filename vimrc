@@ -137,6 +137,8 @@ set ruler
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+" Except for Makefiles!
+autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 " Re-indent, remove trailing whitespace & convert tabs to spaces.
 " noremap <leader>t :execute "normal gg=G"<bar>execute "normal ''"<bar>%s/\s\+$//e<bar>retab<cr>
 " Make backspace honour the spaces

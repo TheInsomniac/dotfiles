@@ -118,6 +118,7 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     export PIP_VIRTUALENV_BASE=$WORKON_HOME
     export PIP_RESPECT_VIRTUALENV=true
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
 fi
 
 #Enable NODE.js virtualenv (nvm)
@@ -221,6 +222,13 @@ fi
 function md() {
     mkdir -p "$*"
     cd "$*"
+}
+
+#setup webdev environment
+function webdev() {
+  mkdir -p "assets/css assets/less assets/sass assets/css assets/img assets/js"
+  cp ~/dotfiles/webdev/* .
+  mv bowerrc .bowerrc
 }
 
 ###-begin-npm-completion-###

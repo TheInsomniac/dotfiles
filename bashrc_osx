@@ -69,7 +69,7 @@ function lst() {
 	# a boolean AND search will be used. Defaults to OR.
 	bool="OR"
 	[[ $1 =~ "and" ]] && bool="AND" && shift
- 
+
 	first=true
 	for tag in $@; do
 		if $first; then
@@ -79,7 +79,7 @@ function lst() {
 			query="$query $bool tag:$tag"
 		fi
 	done
- 
+
 	results=$(mdfind -onlyin . "$query")
 	for line in $results; do
 		echo ${line#`pwd`/} # make result paths relative to pwd
@@ -111,13 +111,15 @@ color-ssh() {
             #tab-color 170 0 255
             tab-color 204 171 216
         else
-          tab-color 187 217 109 
+          tab-color 187 217 109
         fi
     fi
     ssh $*
     # Reset tab color on exit SSH session
     tab-reset
 }
+
+alias ssh=color-ssh
 
 # Quickly get image dimensions from the command line
 function imgsize() {
@@ -131,8 +133,6 @@ function imgsize() {
                 echo "File not found"
         fi
 }
- 
-alias ssh=color-ssh
 
 # Android SDK
 export ANDROID_HOME=/usr/local/opt/android-sdk
