@@ -5,13 +5,16 @@
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "*",
+    "gulp-load-plugins": "*",
     "gulp-autoprefixer": "*",
+    "gulp-compass": "*",
+    "gulp-sass": "*",
     "gulp-less": "*",
     "gulp-livereload": "*",
+    "gulp-minify-css": "*",
     "gulp-rename": "*",
-    "tiny-lr": "*",
     "ecstatic": "*",
-    "gulp-compass": "*"
+    "tiny-lr": "*"
   },
   "devDependencies": {},
   "scripts": {

@@ -25,6 +25,7 @@ YELLOW=$(tput setaf 3)
 WHITE=$(tput setaf 7)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
+BOLD=$(tput bold)
 
 ## Simple git branch prompt if not using git-prompt.bash
 #function parse_git_branch {
@@ -34,7 +35,13 @@ RESET=$(tput sgr0)
 
 ## More complex git branch prompt including dirty/clean state. Uses git-prompt.bash
 #PS1='[\u@\h][\[$BLUE\]\w\[$RESET\]]\n\[$MAGENTA\]$(__git_ps1 "[%s]")\[$RESET\]→ '
-PS1='\[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$CYAN\]❯\[$RESET\] '
+
+#PS1='\[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$CYAN\]❯\[$RESET\] '
+# Add time when prompt was displayed. Useful to figure out when I ran something
+# last
+#PS1="[\t] $PS1"
+#or combine them :)
+PS1='[\[$BOLD\]\[$BLACK\]\t\[$RESET\]] \[$BLUE\]\w\[$RESET\] \[$BLACK\]$(__git_ps1 "(%s)")\[$RESET\]\n\[$MAGENTA\]❯\[$RESET\] '
 
 #Add [hostname] to prompt when logged in via ssh:
 if [ -n "$SSH_CLIENT" ]; then
@@ -226,9 +233,18 @@ function md() {
 
 #setup webdev environment
 function webdev() {
-  mkdir -p "assets/css assets/less assets/sass assets/css assets/img assets/js"
+  if [ ! -d assets ];then
+    mkdir -p "assets/css assets/less assets/sass assets/css assets/img assets/js assets/js/vendor"
+  fi
   cp ~/dotfiles/webdev/* .
-  mv bowerrc .bowerrc
+  mv {,.}bowerrc
+  mv {,.}jsintrc
+  mv {,.}jsbeautifyrc
+  mv {,.}editorconfig
+  mv {,.}gitignore
+  mv {,.}csscomb.json
+  npm install
+  echo "Edit gulpfile.js to suit the needs/directory structure of your project"
 }
 
 ###-begin-npm-completion-###
@@ -325,4 +341,3 @@ github-create() {
   git push -u origin master > /dev/null 2>&1
   echo " done."
 }
-
