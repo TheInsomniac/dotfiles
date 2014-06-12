@@ -233,17 +233,23 @@ function md() {
 
 #setup webdev environment
 function webdev() {
-  if [ ! -d assets ];then
+  read -n1 -p "Scaffold web development into directory: ${PWD##*/}? (y/n) "
+  echo
+  [[ $REPLY = [yY] ]] && setup_webdev || { echo "Installation Cancelled..."; }
+}
+function setup_webdev() {
+  if [ ! -d assets ]; then
     mkdir -p "assets/css assets/less assets/sass assets/css assets/img assets/js assets/js/vendor"
   fi
   cp ~/dotfiles/webdev/* .
   mv {,.}bowerrc
-  mv {,.}jsintrc
+  mv {,.}jshintrc
   mv {,.}jsbeautifyrc
   mv {,.}editorconfig
   mv {,.}gitignore
   mv {,.}csscomb.json
   npm install
+  git init
   echo "Edit gulpfile.js to suit the needs/directory structure of your project"
 }
 

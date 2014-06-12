@@ -20,7 +20,7 @@ gulp.task('html', function() {
 
 gulp.task('less', function() {
   return gulp.src(paths.less)
-    //.pipe(less({compress: true}))
+    .pipe(_.changed(paths.css, {extension: '.min.css'}))
     .pipe(_.less({compress: false}))
     .pipe(_.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(_.minifyCss({keepSpecialComments: 0}))
@@ -31,6 +31,7 @@ gulp.task('less', function() {
 
 gulp.task('sass', function() {
   return gulp.src(paths.sass)
+    .pipe(_.changed(paths.css, {extension: '.min.css'}))
     /* // if Using SASS Compass
      * .pipe(_.compass({
      *   config_file: './config.rb',

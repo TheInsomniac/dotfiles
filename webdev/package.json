@@ -6,6 +6,7 @@
   "dependencies": {
     "gulp": "*",
     "gulp-load-plugins": "*",
+    "gulp-changed": "*",
     "gulp-autoprefixer": "*",
     "gulp-compass": "*",
     "gulp-sass": "*",
@@ -16,7 +17,6 @@
     "ecstatic": "*",
     "tiny-lr": "*"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
