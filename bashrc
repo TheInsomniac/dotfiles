@@ -248,6 +248,7 @@ function setup_webdev() {
   mv {,.}editorconfig
   mv {,.}gitignore
   mv {,.}csscomb.json
+  mv {,.}scss-lint.yml
   npm install
   git init
   echo "Edit gulpfile.js to suit the needs/directory structure of your project"
