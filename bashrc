@@ -55,10 +55,6 @@ if [[ "$HOSTNAME" = "lappy" ]]; then
 else
   PROMPT_COMMAND='echo -ne "\033]0;[$HOSTNAME][${PWD/#$HOME/~}]\007"'
 fi
-# Powerline
-#if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh ]; then
-#    source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
-#fi
 
 export CLICOLOR=1
 export SOLARIZED="dark"
@@ -126,84 +122,6 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     export PIP_RESPECT_VIRTUALENV=true
     export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
     export VIRTUAL_ENV_DISABLE_PROMPT=1
-fi
-
-#Enable NODE.js virtualenv (nvm)
-if [ -x $HOME/NodeEnvs/nvm.sh ]; then
-    export NVM_DIR=$HOME/NodeEnvs
-    source $HOME/NodeEnvs/nvm.sh
-fi
-
-# Python Startup file
-if [ -f $HOME/.pythonstartup.py ]; then
-    export PYTHONSTARTUP="$HOME/.pythonstartup.py"
-fi
-
-# Add ruby's RVM into the shell as a function
-if [ -d $HOME/.rvm ]; then
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-fi
-
-#enable git prompt
-source $HOME/.git-prompt.bash
-#GIT_PS1_SHOWUNTRACKEDFILES='True'
-GIT_PS1_SHOWDIRTYSTATE='True'
-
-# $HOME/.aliases, instead of adding more of them here directly.
-if [ -f $HOME/.aliases ]; then
-    . $HOME/.aliases
-fi
-
-# if $HOME/.ssh_aliases, import ssh aliases
-if [ -f $HOME/.ssh_aliases ]; then
-    . $HOME/.ssh_aliases
-fi
-
-#quickly add aliases to .aliases
-function add-alias() {
-    echo "alias $1=\"${@:2:$#}\"" >> $HOME/.aliases;
-    source $HOME/.aliases;
-    alias alias-add="add-alias"
-}
-
-# batch change extension (chgext FROM TO)
-function chgext() {
-   for file in *.$1 ; do mv "$file" "${file%.$1}.$2" ; done
-}
-
-# Make backup of file (mkbak FILENAME)
-function mkbak() {
-  for file in $1; do cp "$file" "$file".bak; done
-}
-
-# Copy origfile.ext to origfile.newext (mkcp FILENAME.EXT .NEWEXT)
-function mkcp() {
-  for file in $1; do cp "$file" "${file%%.*}$2"; done
-}
-
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
-else
-    . /etc/bash_completion
-fi
-
-if [ -f $HOME/.git-completion.bash ]; then
-    . $HOME/.git-completion.bash
-fi
-
-# enable autojump if installed for OSX
-if [ -f /usr/local/etc/autojump.sh ]; then
-    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
-fi
-# enable autojump if installed for Linux
-if [ -f /usr/local/bin/autojump ]; then
-    [[ -s /etc/profile.d/autojump.bash ]] && . /etc/profile.d/autojump.bash
-fi
-#set CDPATH for easy cd'ing
-#export CDPATH=".:~:/Applications"
-
-# Automatically "workon" Python virtualenv and deactivate when leaving.
-if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     workon_virtualenv() {
         if [ -e .venv ]; then
             #current_dir="${PWD##*/}"
@@ -225,34 +143,60 @@ if [ -x /usr/local/bin/virtualenvwrapper.sh ]; then
     alias cd="virtualenv_cd"
 fi
 
-#make directory and then cd into it
-function md() {
-    mkdir -p "$*"
-    cd "$*"
-}
+#Enable NODE.js virtualenv (nvm)
+if [ -x $HOME/NodeEnvs/nvm.sh ]; then
+    export NVM_DIR=$HOME/NodeEnvs
+    source $HOME/NodeEnvs/nvm.sh
+fi
 
-#setup webdev environment
-function webdev() {
-  read -n1 -p "Scaffold web development into directory: ${PWD##*/}? (y/n) "
-  echo
-  [[ $REPLY = [yY] ]] && setup_webdev || { echo "Installation Cancelled..."; }
-}
-function setup_webdev() {
-  if [ ! -d assets ]; then
-    mkdir -p "assets/css assets/less assets/sass assets/css assets/img assets/js assets/js/vendor"
-  fi
-  cp ~/dotfiles/webdev/* .
-  mv {,.}bowerrc
-  mv {,.}jshintrc
-  mv {,.}jsbeautifyrc
-  mv {,.}editorconfig
-  mv {,.}gitignore
-  mv {,.}csscomb.json
-  mv {,.}scss-lint.yml
-  npm install
-  git init
-  echo "Edit gulpfile.js to suit the needs/directory structure of your project"
-}
+# Python Startup file
+if [ -f $HOME/.pythonstartup.py ]; then
+    export PYTHONSTARTUP="$HOME/.pythonstartup.py"
+fi
+
+# Add ruby's RVM into the shell as a function
+if [ -d $HOME/.rvm ]; then
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+fi
+
+#enable git prompt
+if [ -f $HOME/.git-prompt.bash ]; then
+  source $HOME/.git-prompt.bash
+  #GIT_PS1_SHOWUNTRACKEDFILES='True'
+  GIT_PS1_SHOWDIRTYSTATE='True'
+fi
+
+# $HOME/.aliases, instead of adding more of them here directly.
+if [ -f $HOME/.aliases ]; then
+    . $HOME/.aliases
+fi
+
+# if $HOME/.ssh_aliases, import ssh aliases
+if [ -f $HOME/.ssh_aliases ]; then
+    . $HOME/.ssh_aliases
+fi
+
+# import bash functions
+if [ -f $HOME/.bash-functions.bash ]; then
+  . $HOME/.bash-functions.bash
+fi
+
+# enable bash completion
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+elif [ -f $HOME/.git-completion.bash ]; then
+    . $HOME/.git-completion.bash
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# enable autojump if installed for OSX
+if [ -f /usr/local/etc/autojump.sh ]; then
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
+# enable autojump if installed for Linux
+elif [ -f /usr/local/bin/autojump ]; then
+    [[ -s /etc/profile.d/autojump.bash ]] && . /etc/profile.d/autojump.bash
+fi
 
 ###-begin-npm-completion-###
 #
@@ -307,44 +251,3 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
-### Create Github repo from command line
-github-create() {
-  repo_name=$1
-
-  dir_name=`basename $(pwd)`
-
-  if [ "$repo_name" = "" ]; then
-    echo "Repo name (hit enter to use '$dir_name')?"
-    read repo_name
-  fi
-
-  if [ "$repo_name" = "" ]; then
-    repo_name=$dir_name
-  fi
-
-  username=`git config user.name`
-  if [ "$username" = "" ]; then
-    echo "Could not find username, run 'git config --global github.user <username>'"
-    invalid_credentials=1
-  fi
-
-  token=`git config github.token`
-  if [ "$token" = "" ]; then
-    echo "Could not find token, run 'git config --global github.token <token>'"
-    invalid_credentials=1
-  fi
-
-  if [ "$invalid_credentials" == "1" ]; then
-    return 1
-  fi
-
-  echo -n "Creating Github repository '$repo_name' ..."
-  curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
-  echo " done."
-
-  echo -n "Pushing local code to remote ..."
-  git remote add origin git@github.com:$username/$repo_name.git > /dev/null 2>&1
-  git push -u origin master > /dev/null 2>&1
-  echo " done."
-}
