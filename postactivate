@@ -1,1 +1,3 @@
-PS1="\[$CYAN\][PyEnv: `basename \"$VIRTUAL_ENV\"`] \[$RESET\]$_OLD_VIRTUAL_PS1"
+#!/usr/bin/env bash
+ORIG_PS1="$PS1"
+PS1="\[$CYAN\][PyEnv: `basename \"$VIRTUAL_ENV\"`] \[$RESET\]$ORIG_PS1"

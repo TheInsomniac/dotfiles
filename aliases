@@ -4,16 +4,22 @@ alias mvr='rsync -aP --no-whole-file --inplace --remove-source-files'
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias lsregister=/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister
+  # reload quickview cache
   alias qv='qlmanage -p "$@" > /dev/null 2>&1'
+  # ipython qt console
   alias qtconsole='ipython qtconsole --colors=linux'
-  alias finder='open -R'
   # Clean up LaunchServices to remove duplicates in the “Open With” menu
   alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+  # open node-webkit for specified folder
   alias nw="open -n -a node-webkit"
+  # MacVim settings. Open silently in new tab instead of new window. Push to bg
   alias mvim='/usr/local/bin/mvim --remote-tab-silent "$@" > /dev/null 2>&1'
-  alias serve="python -m SimpleHTTPServer 8888"
-  # alias serve="/usr/local/bin/takeapeek -p 8888"
+  #alias serve="python -m SimpleHTTPServer 8888"
+  alias serve="/usr/local/bin/takeapeek -p 8888"
+  # open Adobe brackets.io from command line. Can include filename or directory
   alias brackets='open -a Brackets'
+  # OSX notification shortcut using terminal-notifier
+  alias notify='terminal-notifier -sound default -message '
 fi
 
 # enable dmesg with human readable timestamp on linux systems
@@ -21,16 +27,11 @@ if [[ "$OSTYPE" = linux-gnu ]]; then
   alias dmesg="dmesg -T"
 fi
 
-#alias dds='dcfldd statusinterval=25 status=on bs=4M conv=notrunc'
-
+# show df in human-readable output
 alias df='df -h'
 
-# Quickly access directories
-#alias Projects='cd ~/Projects'
-#alias Git='cd ~/Git'
-#alias Envs='cd ~/Envs'
-#alias Downloads='cd ~/Downloads'
-#alias Desktop='cd ~/Desktop'
+# default to resume for wget
+alias wget='wget -c'
 
 # Pushd and popd more accessible with +/-/?
 alias +='pushd'
@@ -72,10 +73,12 @@ alias gitc='git commit -a -m'
 alias gitp='git push origin master'
 alias gitd='git diff'
 alias gita='git add'
-alias gitg='open -a GitHub.app'
 alias giti='git init'
 alias gitt='git tag -a -m'
+# Git GUI for OSX
+alias gitg='open -a GitHub.app'
 
+# ls long format human readable
 alias lls='ls -alh'
 
 # Send id_rsa for ssh-copy-ip
@@ -84,6 +87,7 @@ alias ssh-copy-id='ssh-copy-id -i ~/.ssh/id_rsa.pub'
 #Can't fix stupid!
 alias :q="echo 'Try running ViM before exiting...'"
 
+# node.js nodemon script to watch ejs, jade, and js files as well..
 alias nodemon="nodemon -e ejs,jade,js"
 
 #Easier dates

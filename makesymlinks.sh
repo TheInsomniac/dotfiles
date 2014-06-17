@@ -55,6 +55,8 @@ fi
 if [[ -n "$WORKON_HOME" ]]; then
     mv $WORKON_HOME/postactivate $WORKON_HOME/postactivate.orig
     ln -s $dir/postactivate $WORKON_HOME/postactivate
+    mv $WORKON_HOME/postdeactivate $WORKON_HOME/postdeactivate.orig
+    ln -s $dir/postdeactivate $WORKON_HOME/postdeactivate
 fi
 
   #function install_zsh {
