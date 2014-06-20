@@ -18,6 +18,8 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias serve="/usr/local/bin/takeapeek -p 8888"
   # open Adobe brackets.io from command line. Can include filename or directory
   alias brackets='open -a Brackets'
+  # Atom Shell
+  alias atomshell="/Applications/Atom\ Shell.app/Contents/MacOS/Atom"
   # OSX notification shortcut using terminal-notifier
   alias notify='terminal-notifier -sound default -message '
 fi
@@ -92,3 +94,16 @@ alias nodemon="nodemon -e ejs,jade,js"
 
 #Easier dates
 alias now="date +'%m-%d-%Y_%I:%M'"
+
+#DOCKER
+alias dk='docker'
+# docker images
+alias dkim='docker images'
+# docker build imagename
+alias dkb="docker build --rm -t $1 $2"
+# docker run interactive & remove after
+alias dki='docker run --rm -t -i -P'
+# docker run in daemon node
+alias dkd='docker run -d -P'
+# docker remove all non-running containers
+alias dkr='docker rm "$(docker ps -q -a)"'
