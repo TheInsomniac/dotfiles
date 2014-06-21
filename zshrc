@@ -9,8 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 # DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Auto correct typos
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -24,6 +24,17 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(gitfast docker vagrant brew brew-cast virtualenvwrapper npm autojump rvm)
 
 source $ZSH/oh-my-zsh.sh
+
+# ZSH Completion options
+setopt hash_list_all            # hash everything before completion
+setopt completealiases          # complete alisases
+setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
+setopt chase_links              # resolve symlinks
+unsetopt list_beep              # no bell on ambiguous completion
+unsetopt beep                   # no bell on error
+
+# Enable vi keymode instead of emacs
+bindkey -v
 
 # Set oh-my-zsh theme
 source $HOME/.theinsomniac.zsh-theme
