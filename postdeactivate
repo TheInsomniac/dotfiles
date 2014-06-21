@@ -1,2 +1,5 @@
-#!/usr/bin/env bash
-PS1="$ORIG_PS1"
+if [ "$BASH" ]; then
+  PS1="$ORIG_PS1"
+elif [ "$ZSH" ]; then
+  PROMPT="$ORIG_PROMPT"
+fi

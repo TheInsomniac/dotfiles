@@ -1,3 +1,7 @@
-#!/usr/bin/env bash
-ORIG_PS1="$PS1"
-PS1="\[$CYAN\][PyEnv: `basename \"$VIRTUAL_ENV\"`] \[$RESET\]$ORIG_PS1"
+if [ "$BASH" ]; then
+  ORIG_PS1="$PS1"
+  PS1="\[$CYAN\][PyEnv: `basename \"$VIRTUAL_ENV\"`] \[$RESET\]$ORIG_PS1"
+elif [ "$ZSH" ]; then
+  ORIG_PROMPT="$PROMPT"
+  PROMPT="%{$fg[magenta]%}[PyEnv: `basename \"$VIRTUAL_ENV\"`]%{$reset_color%} $ORIG_PROMPT"
+fi

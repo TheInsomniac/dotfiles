@@ -5,19 +5,21 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Setting PATH for Python 2.7
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
-# Deleted files with go to Trash instead of being deleted immediately.
-function rm () {
-  local path
-  for path in "$@"; do
-    if [[ "$path" = -* ]]; then :
-    else
-      local dst=${path##*/}
-      while [ -e ~/.Trash/"$dst" ]; do
-        dst="$dst "$(/bin/date +%H-%M-%S)
-      done
-      /bin/mv "$path" ~/.Trash/"$dst"
+function rm() {
+  local trash_dir="${HOME}/.Trash"
+  local temp_ifs=$IFS
+  IFS=$'\n'
+  for item in "$@"; do
+    if [[ -e "$item" ]]; then
+      item_name="$(basename $item)"
+      if [[ -e "${trash_dir}/${item_name}" ]]; then
+        mv -f "$item" "${trash_dir}/${item_name} $(date "+%H-%M-%S")"
+      else
+        mv -f "$item" "${trash_dir}/"
+      fi
     fi
   done
+  IFS=$temp_ifs
 }
 
 # Recursively delete `.DS_Store` files
