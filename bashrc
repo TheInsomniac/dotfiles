@@ -76,9 +76,8 @@ fi
 if [ -d /usr/share/source-highlight ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS=' -R '
-fi
 # Enable Less' syntax highlighting on OSX
-if [ -d /usr/local/share/source-highlight ]; then
+elif [ -d /usr/local/share/source-highlight ]; then
     export LESSOPEN="| /usr/local/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS=' -R '
 fi
@@ -177,8 +176,8 @@ if [ -f $HOME/.ssh_aliases ]; then
 fi
 
 # import bash functions
-if [ -f $HOME/.bash-functions.bash ]; then
-  . $HOME/.bash-functions.bash
+if [ -f $HOME/.shell-functions ]; then
+  . $HOME/.shell-functions
 fi
 
 # enable bash completion
@@ -188,6 +187,11 @@ elif [ -f $HOME/.git-completion.bash ]; then
     . $HOME/.git-completion.bash
 elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+fi
+
+# enable docker completeion
+if [ -f $HOME/.docker-completion.bash ]; then
+  . $HOME/.docker-completion.bash
 fi
 
 # enable autojump if installed for OSX

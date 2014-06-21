@@ -36,9 +36,9 @@ alias df='df -h'
 alias wget='wget -c'
 
 # Pushd and popd more accessible with +/-/?
-alias +='pushd'
+alias -- +='pushd'
 alias -- -='popd'
-alias ?='dirs -v'
+#alias ?='dirs -v' #<- Doesn't work on zsh
 
 # use ping $SN.25 to ping localsubnet ip .25 such as 192.168.10.25
 # or ssh $SN.100 to ssh to localsubnhet ip 192.168.10.100
