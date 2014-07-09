@@ -21,7 +21,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="dd/mm/yyyy"
 
 # Enabled oh-my-zsh plugins
-plugins=(gitfast docker vagrant brew brew-cast virtualenvwrapper npm autojump rvm)
+plugins=(gitfast docker vagrant brew brew-cast virtualenvwrapper npm autojump \
+  rvm)
 
 source $ZSH/oh-my-zsh.sh
 
